@@ -69,21 +69,17 @@ function initScrollAnimations() {
 
 // Header effects on scroll
 function initHeaderEffects() {
-  let lastScrollTop = 0
   const header = document.querySelector("header")
+  let lastScrollTop = 0
 
   window.addEventListener("scroll", () => {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop
 
     // Change header background
-    if (scrollTop > 100) {
-      header.style.background = "rgba(34, 197, 94, 0.98)"
-      header.style.backdropFilter = "blur(15px)"
-      header.style.boxShadow = "0 2px 20px rgba(34, 197, 94, 0.3)"
+    if (scrollTop > 50) {
+      header.classList.add("scrolled")
     } else {
-      header.style.background = "rgba(34, 197, 94, 0.95)"
-      header.style.backdropFilter = "blur(10px)"
-      header.style.boxShadow = "none"
+      header.classList.remove("scrolled")
     }
 
     // Hide/show header on scroll
@@ -117,7 +113,7 @@ function initScrollToTop() {
   })
 }
 
-// Contact form submission
+// Contact form submission with correct WhatsApp number
 function initContactForm() {
   const contactForm = document.getElementById("contactForm")
 
@@ -126,8 +122,7 @@ function initContactForm() {
 
     // Add loading state
     const submitBtn = this.querySelector(".submit-btn")
-    const originalText = submitBtn.textContent
-    submitBtn.textContent = "Mengirim..."
+    submitBtn.classList.add("loading")
     submitBtn.disabled = true
 
     // Get form data
@@ -136,13 +131,21 @@ function initContactForm() {
     const phone = formData.get("phone")
     const message = formData.get("message")
 
+    // Validate form
+    if (!name || !phone || !message) {
+      showNotification("Mohon lengkapi semua field yang wajib diisi", "error")
+      submitBtn.classList.remove("loading")
+      submitBtn.disabled = false
+      return
+    }
+
     // Simulate form processing
     setTimeout(() => {
-      // Create WhatsApp message with the requested format
+      // Create WhatsApp message with correct number
       const whatsappMessage = encodeURIComponent(
         `Halo Pak Sarwan, saya ${name} dan saya ingin ${message}.\n\nNomor telepon saya: ${phone}\n\nTerima kasih!`,
       )
-      const whatsappUrl = `https://wa.me/6281234567890?text=${whatsappMessage}`
+      const whatsappUrl = `https://wa.me/6285740007900?text=${whatsappMessage}`
 
       // Open WhatsApp
       window.open(whatsappUrl, "_blank")
@@ -151,7 +154,7 @@ function initContactForm() {
       this.reset()
 
       // Reset button
-      submitBtn.textContent = originalText
+      submitBtn.classList.remove("loading")
       submitBtn.disabled = false
 
       // Show success message
@@ -164,30 +167,59 @@ function initContactForm() {
 function initMobileMenu() {
   const mobileMenuBtn = document.querySelector(".mobile-menu")
   const navLinks = document.querySelector(".nav-links")
+  const navLinksItems = document.querySelectorAll(".nav-links a")
 
-  mobileMenuBtn.addEventListener("click", function () {
-    navLinks.classList.toggle("active")
+  if (mobileMenuBtn && navLinks) {
+    mobileMenuBtn.addEventListener("click", (e) => {
+      e.stopPropagation()
+      const isActive = navLinks.classList.contains("active")
 
-    // Animate hamburger icon
-    const icon = this.querySelector("i")
-    if (navLinks.classList.contains("active")) {
-      icon.classList.remove("fa-bars")
-      icon.classList.add("fa-times")
-    } else {
-      icon.classList.remove("fa-times")
-      icon.classList.add("fa-bars")
-    }
-  })
+      if (isActive) {
+        closeMobileMenu()
+      } else {
+        openMobileMenu()
+      }
+    })
 
-  // Close menu when clicking outside
-  document.addEventListener("click", (e) => {
-    if (!e.target.closest("nav")) {
-      navLinks.classList.remove("active")
-      const icon = mobileMenuBtn.querySelector("i")
-      icon.classList.remove("fa-times")
-      icon.classList.add("fa-bars")
-    }
-  })
+    // Close menu when clicking nav links
+    navLinksItems.forEach((link) => {
+      link.addEventListener("click", () => {
+        closeMobileMenu()
+      })
+    })
+
+    // Close menu when clicking outside
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest("nav") && navLinks.classList.contains("active")) {
+        closeMobileMenu()
+      }
+    })
+
+    // Close menu on escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && navLinks.classList.contains("active")) {
+        closeMobileMenu()
+      }
+    })
+  }
+
+  function openMobileMenu() {
+    navLinks.classList.add("active")
+    mobileMenuBtn.classList.add("active")
+    mobileMenuBtn.setAttribute("aria-expanded", "true")
+    document.body.style.overflow = "hidden"
+  }
+
+  function closeMobileMenu() {
+    navLinks.classList.remove("active")
+    mobileMenuBtn.classList.remove("active")
+    mobileMenuBtn.setAttribute("aria-expanded", "false")
+    document.body.style.overflow = ""
+  }
+
+  // Make functions globally accessible
+  window.openMobileMenu = openMobileMenu
+  window.closeMobileMenu = closeMobileMenu
 }
 
 // Loading animation
@@ -758,11 +790,11 @@ class MRATANIWebsite {
       // Simulate processing delay
       await this.delay(1000)
 
-      // Create WhatsApp message
+      // Create WhatsApp message with correct number
       const whatsappMessage = encodeURIComponent(
         `Halo Pak Sarwan, saya ${name} dan saya ingin ${message}.\n\nNomor telepon saya: ${phone}\n\nTerima kasih!`,
       )
-      const whatsappUrl = `https://wa.me/6281234567890?text=${whatsappMessage}`
+      const whatsappUrl = `https://wa.me/6285740007900?text=${whatsappMessage}`
 
       // Open WhatsApp
       window.open(whatsappUrl, "_blank", "noopener,noreferrer")
@@ -858,9 +890,11 @@ class MRATANIWebsite {
   initMobileMenu() {
     const mobileMenuBtn = document.querySelector(".mobile-menu")
     const navLinks = document.querySelector(".nav-links")
+    const navLinksItems = document.querySelectorAll(".nav-links a")
 
     if (mobileMenuBtn && navLinks) {
-      mobileMenuBtn.addEventListener("click", () => {
+      mobileMenuBtn.addEventListener("click", (e) => {
+        e.stopPropagation()
         const isActive = navLinks.classList.contains("active")
 
         if (isActive) {
@@ -870,16 +904,23 @@ class MRATANIWebsite {
         }
       })
 
+      // Close menu when clicking nav links
+      navLinksItems.forEach((link) => {
+        link.addEventListener("click", () => {
+          this.closeMobileMenu()
+        })
+      })
+
       // Close menu when clicking outside
       document.addEventListener("click", (e) => {
-        if (!e.target.closest("nav")) {
+        if (!e.target.closest("nav") && navLinks.classList.contains("active")) {
           this.closeMobileMenu()
         }
       })
 
       // Close menu on escape key
       document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") {
+        if (e.key === "Escape" && navLinks.classList.contains("active")) {
           this.closeMobileMenu()
         }
       })
@@ -1320,6 +1361,9 @@ if ("serviceWorker" in navigator) {
 // Analytics and tracking (placeholder)
 function trackEvent(eventName, eventData = {}) {
   // Google Analytics 4 or other analytics service
+  // Placeholder for gtag declaration
+  const gtag = window.gtag || (() => {})
+
   if (typeof gtag !== "undefined") {
     gtag("event", eventName, eventData)
   }
