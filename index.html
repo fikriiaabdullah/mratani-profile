@@ -3,204 +3,802 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MRATANI - Benih Cabai Unggulan dari Desa Kebakalan</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- SEO Meta Tags -->
+    <title>MRATANI - Benih Cabai Unggulan Berkualitas Tinggi dari Desa Kebakalan | Petani Terpercaya</title>
+    <meta name="description" content="MRATANI menyediakan benih cabai berkualitas tinggi langsung dari petani berpengalaman di Desa Kebakalan. Dapatkan benih cabe rawit merah, cabe hijau, dan varietas lokal terbaik untuk hasil panen melimpah.">
+    <meta name="keywords" content="benih cabai, cabe rawit, benih cabe berkualitas, petani cabai, Desa Kebakalan, MRATANI, benih cabe rawit merah, cabe hijau">
+    <meta name="author" content="MRATANI - Bapak Sarwan">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://mratani.com">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="MRATANI - Benih Cabai Unggulan dari Desa Kebakalan">
+    <meta property="og:description" content="Benih cabai berkualitas tinggi langsung dari petani terpercaya. Hasil panen melimpah, harga terjangkau.">
+    <meta property="og:image" content="assets/bg.jpeg">
+    <meta property="og:url" content="https://mratani.com">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="id_ID">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MRATANI - Benih Cabai Unggulan">
+    <meta name="twitter:description" content="Benih cabai berkualitas tinggi dari petani terpercaya">
+    <meta name="twitter:image" content="assets/bg.jpeg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "MRATANI",
+        "description": "Penyedia benih cabai berkualitas tinggi dari Desa Kebakalan",
+        "founder": {
+            "@type": "Person",
+            "name": "Sarwan"
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Desa Kebakalan",
+            "addressRegion": "Kecamatan Baturraden",
+            "addressCountry": "Indonesia"
+        },
+        "telephone": "+62-857-4000-7900",
+        "email": "info@mratani.com",
+        "url": "https://mratani.com",
+        "sameAs": [
+            "https://wa.me/6285740007900"
+        ],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Benih Cabai",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Product",
+                        "name": "Cabe Rawit Merah",
+                        "description": "Varietas unggulan dengan tingkat kepedasan tinggi"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Product",
+                        "name": "Cabe Hijau Ceplus",
+                        "description": "Cabai hijau dengan rasa segar dan tekstur renyah"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Product",
+                        "name": "Cabe Rawit Lokal",
+                        "description": "Varietas lokal yang tahan penyakit"
+                    }
+                }
+            ]
+        }
+    }
+    </script>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">🌶️</div>
+            <div class="loading-text">MRATANI</div>
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+
     <!-- Header -->
-    <header>
-        <nav>
-            <a href="#" class="logo">MRATANI</a>
+    <header role="banner">
+        <nav role="navigation" aria-label="Main navigation">
+            <a href="#home" class="logo" aria-label="MRATANI Homepage">
+                <span class="logo-icon">🌶️</span>
+                <span class="logo-text">MRATANI</span>
+            </a>
             <ul class="nav-links">
-                <li><a href="#home">Beranda</a></li>
-                <li><a href="#about">Tentang</a></li>
-                <li><a href="#products">Produk</a></li>
-                <li><a href="#village">Desa</a></li>
-                <li><a href="#contact">Kontak</a></li>
+                <li><a href="#home" aria-label="Go to homepage">Beranda</a></li>
+                <li><a href="#about" aria-label="Learn about us">Tentang</a></li>
+                <li><a href="#products" aria-label="View our products">Produk</a></li>
+                <li><a href="#village" aria-label="About our village">Desa</a></li>
+                <li><a href="#contact" aria-label="Contact us">Kontak</a></li>
             </ul>
-            <div class="mobile-menu">
-                <i class="fas fa-bars"></i>
-            </div>
+            <button class="mobile-menu" aria-label="Toggle mobile menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
         </nav>
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
+    <section id="home" class="hero" role="banner">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+        </div>
         <div class="hero-content">
-            <h1>MRATANI</h1>
-            <h2 style="font-size: 2rem; margin-bottom: 1rem;">Benih Cabai Unggulan dari Desa Kebakalan</h2>
-            <p>Langsung dari petani terpercaya, berkualitas dan siap tanam.</p>
-            <a href="#contact" class="cta-button">Hubungi Kami</a>
+            <div class="hero-badge">
+                <span class="badge-icon">🌱</span>
+                <span>Petani Terpercaya Sejak 2008</span>
+            </div>
+            <h1 class="hero-title">
+                <span class="title-main">MRATANI</span>
+                <span class="title-sub">Benih Cabai Unggulan</span>
+            </h1>
+            <p class="hero-description">
+                Langsung dari petani berpengalaman di Desa Kebakalan. 
+                Kualitas terjamin, hasil panen melimpah, harga terjangkau.
+            </p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Tahun Pengalaman</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Petani Puas</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Varietas Unggulan</div>
+                </div>
+            </div>
+            <div class="hero-actions">
+                <a href="#contact" class="cta-primary" aria-label="Contact us now">
+                    <span>Hubungi Kami</span>
+                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                </a>
+                <a href="#products" class="cta-secondary" aria-label="View our products">
+                    <span>Lihat Produk</span>
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator" aria-label="Scroll down">
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
+            <span class="scroll-text">Scroll untuk melihat lebih</span>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about">
+    <section id="about" class="about" role="main">
         <div class="container">
-            <h2 class="section-title animate-on-scroll">Tentang MRATANI</h2>
+            <div class="section-header animate-on-scroll">
+                <span class="section-badge">Tentang Kami</span>
+                <h2 class="section-title">Cerita MRATANI</h2>
+                <p class="section-subtitle">
+                    Perjalanan kami dalam menghadirkan benih cabai berkualitas tinggi
+                </p>
+            </div>
+            
             <div class="about-content animate-on-scroll">
                 <div class="about-text">
-                    <p>MRATANI adalah usaha pertanian keluarga yang didirikan oleh Bapak Sarwan di Desa Kebakalan. Dengan pengalaman lebih dari 15 tahun dalam budidaya cabai, kami berkomitmen untuk menyediakan benih cabai berkualitas tinggi yang telah terbukti memberikan hasil panen yang melimpah.</p>
+                    <div class="text-block">
+                        <h3>Dedikasi untuk Kualitas</h3>
+                        <p>MRATANI adalah usaha pertanian keluarga yang didirikan oleh Bapak Sarwan di Desa Kebakalan. Dengan pengalaman lebih dari 15 tahun dalam budidaya cabai, kami berkomitmen untuk menyediakan benih cabai berkualitas tinggi yang telah terbukti memberikan hasil panen yang melimpah.</p>
+                    </div>
                     
-                    <p>Misi kami adalah membantu petani Indonesia mendapatkan benih cabai terbaik dengan harga yang terjangkau. Setiap benih yang kami produksi telah melalui proses seleksi ketat dan perawatan khusus untuk memastikan kualitas dan daya tumbuh yang optimal.</p>
+                    <div class="text-block">
+                        <h3>Misi Kami</h3>
+                        <p>Membantu petani Indonesia mendapatkan benih cabai terbaik dengan harga yang terjangkau. Setiap benih yang kami produksi telah melalui proses seleksi ketat dan perawatan khusus untuk memastikan kualitas dan daya tumbuh yang optimal.</p>
+                    </div>
                     
-                    <p>Berlokasi di daerah yang subur dan beriklim ideal untuk pertanian cabai, MRATANI telah menjadi pilihan utama petani lokal dan regional untuk kebutuhan benih cabai berkualitas.</p>
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-seedling" aria-hidden="true"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Kualitas Terjamin</h4>
+                                <p>Proses seleksi ketat untuk setiap benih</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-leaf" aria-hidden="true"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Ramah Lingkungan</h4>
+                                <p>Budidaya berkelanjutan dan alami</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="founder-card">
-                    <img src="/placeholder.svg?height=150&width=150" alt="Bapak Sarwan" class="founder-photo">
-                    <h3>Bapak Sarwan</h3>
-                    <p>Pendiri MRATANI</p>
-                    <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Petani berpengalaman dengan dedikasi tinggi untuk menghasilkan benih cabai terbaik</p>
+                
+                <div class="founder-section">
+                    <div class="founder-card">
+                        <div class="founder-image">
+                            <img src="assets/sarwan.jpg" alt="Bapak Sarwan - Pendiri MRATANI" class="founder-photo">
+                            <div class="founder-badge">
+                                <i class="fas fa-award" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <div class="founder-info">
+                            <h3>Bapak Sarwan</h3>
+                            <p class="founder-title">Pendiri & Petani Ahli</p>
+                            <p class="founder-description">
+                                Petani berpengalaman dengan dedikasi tinggi untuk menghasilkan benih cabai terbaik. 
+                                Memimpin MRATANI dengan visi menjadi penyedia benih cabai terpercaya di Indonesia.
+                            </p>
+                            <div class="founder-achievements">
+                                <div class="achievement">
+                                    <span class="achievement-number">15+</span>
+                                    <span class="achievement-label">Tahun Pengalaman</span>
+                                </div>
+                                <div class="achievement">
+                                    <span class="achievement-number">100%</span>
+                                    <span class="achievement-label">Organik</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Products Section -->
-    <section id="products" class="products">
+    <section id="products" class="products" role="main">
         <div class="container">
-            <h2 class="section-title animate-on-scroll">Benih Cabai Kami</h2>
-        <div class="products-grid">
-            <div class="product-card animate-on-scroll">
-                <img src="assets/cabai-rawit-merah.jpeg" alt="Cabe Rawit Merah" class="product-image">
-                <div class="product-icon">
-                    <i class="fas fa-pepper-hot"></i>
-                </div>
-                <h3>Cabe Rawit Merah</h3>
-                <p>Varietas unggulan dengan tingkat kepedasan tinggi dan hasil panen melimpah. Cocok untuk berbagai jenis masakan tradisional Indonesia.</p>
-                <a href="https://wa.me/6281234567890?text=Halo%20Pak%20Sarwan,%20saya%20tertarik%20dengan%20Cabe%20Rawit%20Merah" class="whatsapp-btn">
-                    <i class="fab fa-whatsapp"></i> Pesan Sekarang
-                </a>
+            <div class="section-header animate-on-scroll">
+                <span class="section-badge">Produk Unggulan</span>
+                <h2 class="section-title">Benih Cabai Berkualitas</h2>
+                <p class="section-subtitle">
+                    Pilihan varietas terbaik yang telah terbukti memberikan hasil panen optimal
+                </p>
             </div>
-            <div class="product-card animate-on-scroll">
-                <img src="assets/cabai-hijau.png" alt="Cabe Hijau Ceplus" class="product-image">
-                <div class="product-icon">
-                    <i class="fas fa-seedling"></i>
-                </div>
-                <h3>Cabe Hijau Ceplus</h3>
-                <p>Cabai hijau dengan rasa segar dan tekstur renyah. Ideal untuk lalapan dan berbagai olahan sayuran segar.</p>
-                <a href="https://wa.me/6281234567890?text=Halo%20Pak%20Sarwan,%20saya%20tertarik%20dengan%20Cabe%20Hijau%20Ceplus" class="whatsapp-btn">
-                    <i class="fab fa-whatsapp"></i> Pesan Sekarang
-                </a>
-            </div>
-            <div class="product-card animate-on-scroll">
-                <img src="assets/cabai-rawit.jpeg" alt="Cabe Rawit Lokal" class="product-image">
-                <div class="product-icon">
-                    <i class="fas fa-leaf"></i>
-                </div>
-                <h3>Cabe Rawit (Lokal)</h3>
-                <p>Varietas lokal yang telah beradaptasi dengan iklim Indonesia. Tahan penyakit dan mudah dibudidayakan.</p>
-                <a href="https://wa.me/6281234567890?text=Halo%20Pak%20Sarwan,%20saya%20tertarik%20dengan%20Cabe%20Rawit%20Lokal" class="whatsapp-btn">
-                    <i class="fab fa-whatsapp"></i> Pesan Sekarang
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
+            
+            <div class="products-grid">
+                <article class="product-card animate-on-scroll" data-product="cabe-rawit-merah">
+                    <div class="product-image-container">
+                        <img src="assets/cabai-rawit-merah.jpeg" alt="Cabe Rawit Merah - Varietas unggulan dengan kepedasan tinggi" class="product-image" loading="lazy">
+                        <div class="product-badge">
+                            <span>Terlaris</span>
+                        </div>
+                        <div class="product-overlay">
+                            <button class="quick-view-btn" aria-label="Quick view Cabe Rawit Merah">
+                                <i class="fas fa-eye" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">Varietas Premium</div>
+                        <h3 class="product-title">Cabe Rawit Merah</h3>
+                        <p class="product-description">
+                            Varietas unggulan dengan tingkat kepedasan tinggi dan hasil panen melimpah. 
+                            Cocok untuk berbagai jenis masakan tradisional Indonesia.
+                        </p>
+                        <div class="product-features">
+                            <div class="feature-tag">
+                                <i class="fas fa-fire" aria-hidden="true"></i>
+                                <span>Pedas Tinggi</span>
+                            </div>
+                            <div class="feature-tag">
+                                <i class="fas fa-chart-line" aria-hidden="true"></i>
+                                <span>Hasil Melimpah</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <a href="https://wa.me/6285740007900?text=Halo%20Pak%20Sarwan,%20saya%20tertarik%20dengan%20Cabe%20Rawit%20Merah" 
+                               class="whatsapp-btn" 
+                               aria-label="Order Cabe Rawit Merah via WhatsApp"
+                               target="_blank" 
+                               rel="noopener">
+                                <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                                <span>Pesan Sekarang</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
 
-    <!-- Village Section -->
-    <section id="village" class="village">
-        <div class="container">
-            <div class="village-content animate-on-scroll">
-                <h2 class="section-title" style="color: white;">Desa Kebakalan</h2>
-                <p>Desa Kebakalan terletak di daerah yang memiliki tanah subur dan iklim yang sangat mendukung untuk budidaya cabai. Dengan tradisi pertanian yang telah turun-temurun, masyarakat desa ini memiliki keahlian khusus dalam menghasilkan benih cabai berkualitas tinggi.</p>
-                
-                <p>MRATANI berperan aktif dalam mengembangkan potensi pertanian desa dengan menerapkan teknik budidaya modern sambil tetap mempertahankan kearifan lokal. Kami bangga menjadi bagian dari komunitas petani yang berkomitmen untuk kemajuan pertanian Indonesia.</p>
+                <article class="product-card animate-on-scroll" data-product="cabe-hijau">
+                    <div class="product-image-container">
+                        <img src="assets/cabai-hijau.png" alt="Cabe Hijau Ceplus - Cabai hijau segar dengan tekstur renyah" class="product-image" loading="lazy">
+                        <div class="product-badge eco">
+                            <span>Organik</span>
+                        </div>
+                        <div class="product-overlay">
+                            <button class="quick-view-btn" aria-label="Quick view Cabe Hijau Ceplus">
+                                <i class="fas fa-eye" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">Varietas Segar</div>
+                        <h3 class="product-title">Cabe Hijau Ceplus</h3>
+                        <p class="product-description">
+                            Cabai hijau dengan rasa segar dan tekstur renyah. 
+                            Ideal untuk lalapan dan berbagai olahan sayuran segar.
+                        </p>
+                        <div class="product-features">
+                            <div class="feature-tag">
+                                <i class="fas fa-leaf" aria-hidden="true"></i>
+                                <span>Segar</span>
+                            </div>
+                            <div class="feature-tag">
+                                <i class="fas fa-heart" aria-hidden="true"></i>
+                                <span>Sehat</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <a href="https://wa.me/6285740007900?text=Halo%20Pak%20Sarwan,%20saya%20tertarik%20dengan%20Cabe%20Hijau%20Ceplus" 
+                               class="whatsapp-btn" 
+                               aria-label="Order Cabe Hijau Ceplus via WhatsApp"
+                               target="_blank" 
+                               rel="noopener">
+                                <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                                <span>Pesan Sekarang</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card animate-on-scroll" data-product="cabe-rawit-lokal">
+                    <div class="product-image-container">
+                        <img src="assets/cabai-rawit.jpeg" alt="Cabe Rawit Lokal - Varietas lokal tahan penyakit" class="product-image" loading="lazy">
+                        <div class="product-badge local">
+                            <span>Lokal</span>
+                        </div>
+                        <div class="product-overlay">
+                            <button class="quick-view-btn" aria-label="Quick view Cabe Rawit Lokal">
+                                <i class="fas fa-eye" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">Varietas Adaptif</div>
+                        <h3 class="product-title">Cabe Rawit Lokal</h3>
+                        <p class="product-description">
+                            Varietas lokal yang telah beradaptasi dengan iklim Indonesia. 
+                            Tahan penyakit dan mudah dibudidayakan.
+                        </p>
+                        <div class="product-features">
+                            <div class="feature-tag">
+                                <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                                <span>Tahan Penyakit</span>
+                            </div>
+                            <div class="feature-tag">
+                                <i class="fas fa-seedling" aria-hidden="true"></i>
+                                <span>Mudah Tanam</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <a href="https://wa.me/6285740007900?text=Halo%20Pak%20Sarwan,%20saya%20tertarik%20dengan%20Cabe%20Rawit%20Lokal" 
+                               class="whatsapp-btn" 
+                               aria-label="Order Cabe Rawit Lokal via WhatsApp"
+                               target="_blank" 
+                               rel="noopener">
+                                <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                                <span>Pesan Sekarang</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- Article Section -->
-    <section id="article" class="article">
+    <!-- Village Section -->
+    <section id="village" class="village" role="main">
+        <div class="village-background">
+            <div class="village-overlay"></div>
+        </div>
         <div class="container">
-            <h2 class="section-title animate-on-scroll">Tips Menanam Cabai dari MRATANI</h2>
-            <div class="article-content animate-on-scroll">
-                <p><strong>1. Persiapan Lahan yang Optimal</strong><br>
-                Pastikan lahan memiliki drainase yang baik dan pH tanah antara 6,0-7,0. Gemburkan tanah hingga kedalaman 20-30 cm dan campurkan dengan kompos atau pupuk kandang yang telah matang. Buat bedengan dengan lebar 1-1,2 meter dan tinggi 20-30 cm untuk mencegah genangan air.</p>
+            <div class="village-content animate-on-scroll">
+                <div class="section-header">
+                    <span class="section-badge light">Asal Kami</span>
+                    <h2 class="section-title light">Desa Kebakalan</h2>
+                    <p class="section-subtitle light">
+                        Tanah subur yang melahirkan benih cabai berkualitas tinggi
+                    </p>
+                </div>
+                
+                <div class="village-info">
+                    <div class="village-text">
+                        <p>
+                            Desa Kebakalan terletak di daerah yang memiliki tanah subur dan iklim yang sangat mendukung 
+                            untuk budidaya cabai. Dengan tradisi pertanian yang telah turun-temurun, masyarakat desa ini 
+                            memiliki keahlian khusus dalam menghasilkan benih cabai berkualitas tinggi.
+                        </p>
+                        
+                        <p>
+                            MRATANI berperan aktif dalam mengembangkan potensi pertanian desa dengan menerapkan teknik 
+                            budidaya modern sambil tetap mempertahankan kearifan lokal. Kami bangga menjadi bagian dari 
+                            komunitas petani yang berkomitmen untuk kemajuan pertanian Indonesia.
+                        </p>
+                    </div>
+                    
+                    <div class="village-features">
+                        <div class="village-feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-mountain" aria-hidden="true"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Iklim Ideal</h4>
+                                <p>Kondisi cuaca yang sempurna untuk budidaya cabai</p>
+                            </div>
+                        </div>
+                        <div class="village-feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-tractor" aria-hidden="true"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Tradisi Pertanian</h4>
+                                <p>Pengalaman turun-temurun dalam bertani</p>
+                            </div>
+                        </div>
+                        <div class="village-feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-users" aria-hidden="true"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Komunitas Kuat</h4>
+                                <p>Gotong royong dalam mengembangkan pertanian</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <p><strong>2. Teknik Penyemaian yang Benar</strong><br>
-                Rendam benih dalam air hangat selama 2-3 jam sebelum disemai. Gunakan media semai berupa campuran tanah, kompos, dan sekam bakar dengan perbandingan 1:1:1. Semai benih pada kedalaman 0,5-1 cm dan jaga kelembaban media dengan penyiraman rutin menggunakan sprayer.</p>
-
-                <p><strong>3. Perawatan dan Pemeliharaan</strong><br>
-                Lakukan penyiraman secara teratur, terutama pada pagi dan sore hari. Berikan pupuk NPK sesuai dosis anjuran setiap 2 minggu sekali. Lakukan penyiangan gulma secara berkala dan pantau tanaman dari serangan hama dan penyakit. Pasang ajir atau turus untuk menopang tanaman saat mulai berbuah.</p>
+    <!-- Tips Section -->
+    <section id="tips" class="tips" role="main">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-badge">Tips & Panduan</span>
+                <h2 class="section-title">Cara Menanam Cabai yang Benar</h2>
+                <p class="section-subtitle">
+                    Panduan lengkap dari ahli untuk hasil panen yang optimal
+                </p>
+            </div>
+            
+            <div class="tips-content animate-on-scroll">
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <div class="tip-number">01</div>
+                        <div class="tip-icon">
+                            <i class="fas fa-seedling" aria-hidden="true"></i>
+                        </div>
+                        <h3>Persiapan Lahan</h3>
+                        <p>
+                            Pastikan lahan memiliki drainase yang baik dan pH tanah antara 6,0-7,0. 
+                            Gemburkan tanah hingga kedalaman 20-30 cm dan campurkan dengan kompos 
+                            atau pupuk kandang yang telah matang.
+                        </p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-number">02</div>
+                        <div class="tip-icon">
+                            <i class="fas fa-spa" aria-hidden="true"></i>
+                        </div>
+                        <h3>Teknik Penyemaian</h3>
+                        <p>
+                            Rendam benih dalam air hangat selama 2-3 jam sebelum disemai. 
+                            Gunakan media semai berupa campuran tanah, kompos, dan sekam bakar 
+                            dengan perbandingan 1:1:1.
+                        </p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-number">03</div>
+                        <div class="tip-icon">
+                            <i class="fas fa-tint" aria-hidden="true"></i>
+                        </div>
+                        <h3>Perawatan Rutin</h3>
+                        <p>
+                            Lakukan penyiraman secara teratur, terutama pada pagi dan sore hari. 
+                            Berikan pupuk NPK sesuai dosis anjuran setiap 2 minggu sekali dan 
+                            pantau dari serangan hama.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Map Section -->
-    <section id="map" class="map">
+    <section id="map" class="map" role="main">
         <div class="container">
-            <h2 class="section-title animate-on-scroll">Lokasi Kami</h2>
+            <div class="section-header animate-on-scroll">
+                <span class="section-badge">Lokasi</span>
+                <h2 class="section-title">Temukan Kami</h2>
+                <p class="section-subtitle">
+                    Kunjungi langsung kebun kami di Desa Kebakalan
+                </p>
+            </div>
+            
             <div class="map-container animate-on-scroll">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.0!2d110.0!3d-7.5!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sDesa%20Kebakalan!5e0!3m2!1sen!2sid!4v1234567890"
-                    allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
+                <div class="map-info">
+                    <div class="location-card">
+                        <div class="location-icon">
+                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                        </div>
+                        <div class="location-details">
+                            <h3>MRATANI Farm</h3>
+                            <p>Desa Kebakalan, Kecamatan Karanggayam</p>
+                            <p>Kebumen, Jawa Tengah</p>
+                            <div class="location-actions">
+                                <a href="https://maps.app.goo.gl/SepSkBxuEYdNmDKh7" 
+                                   target="_blank" 
+                                   rel="noopener" 
+                                   class="direction-btn"
+                                   aria-label="Get directions to MRATANI Farm">
+                                    <i class="fas fa-directions" aria-hidden="true"></i>
+                                    <span>Petunjuk Arah</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="map-embed">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126459.57830714052!2d109.1447!3d-7.4319!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e655ea49d9f9885%3A0x5027a76e356ab40!2sKebakalan%2C%20Mandiraja%2C%20Banjarnegara%20Regency%2C%20Central%20Java!5e0!3m2!1sen!2sid!4v1703123456789!5m2!1sen!2sid"
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Lokasi MRATANI di Desa Kebakalan"
+                        aria-label="Google Maps showing MRATANI location in Desa Kebakalan">
+                    </iframe>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
-    <div class="container">
-        <h2 class="section-title animate-on-scroll">Hubungi Kami</h2>
-        <form class="contact-form animate-on-scroll" id="contactForm">
-            <div class="form-group">
-                <label for="name">Nama Lengkap</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            <div class="form-group">
-                <label for="phone">Nomor Telepon</label>
-                <input type="tel" id="phone" name="phone" required>
-            </div>
-            <div class="form-group">
-                <label for="message">Apa yang ingin Anda pesan?</label>
-                <textarea id="message" name="message" rows="5" placeholder="Contoh: pesan benih cabe rawit merah 1 kg" required></textarea>
-            </div>
-            <button type="submit" class="submit-btn">Kirim Pesan ke WhatsApp</button>
-        </form>
-    </div>
-</section>
-
-    <!-- Footer -->
-    <footer>
+    <section id="contact" class="contact" role="main">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>MRATANI</h3>
-                    <p>Benih cabai berkualitas tinggi langsung dari petani terpercaya di Desa Kebakalan.</p>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/6281234567890"><i class="fab fa-whatsapp"></i></a>
+            <div class="section-header animate-on-scroll">
+                <span class="section-badge">Hubungi Kami</span>
+                <h2 class="section-title">Mari Berkolaborasi</h2>
+                <p class="section-subtitle">
+                    Siap membantu Anda mendapatkan benih cabai terbaik
+                </p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info animate-on-scroll">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>WhatsApp</h3>
+                            <p>Respon cepat dalam 5 menit</p>
+                            <a href="https://wa.me/6285740007900" 
+                               class="contact-link"
+                               target="_blank" 
+                               rel="noopener"
+                               aria-label="Contact us via WhatsApp">
+                                +62 857-4000-7900
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone" aria-hidden="true"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Telepon</h3>
+                            <p>Senin - Sabtu, 08:00 - 17:00</p>
+                            <a href="tel:+6281234567890" 
+                               class="contact-link"
+                               aria-label="Call us">
+                                +62 857-4000-7900
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>Untuk pertanyaan detail</p>
+                            <a href="mailto:info@mratani.com" 
+                               class="contact-link"
+                               aria-label="Send us an email">
+                                info@mratani.com
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="footer-section">
-                    <h3>Kontak</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Desa Kebakalan, Kecamatan Baturraden</p>
-                    <p><i class="fas fa-phone"></i> +62 812-3456-7890</p>
-                    <p><i class="fas fa-envelope"></i> info@mratani.com</p>
+                
+                <form class="contact-form animate-on-scroll" id="contactForm" novalidate>
+                    <div class="form-header">
+                        <h3>Kirim Pesan</h3>
+                        <p>Isi form di bawah dan kami akan menghubungi Anda segera</p>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="name" class="form-label">
+                                Nama Lengkap <span class="required">*</span>
+                            </label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-user input-icon" aria-hidden="true"></i>
+                                <input type="text" 
+                                       id="name" 
+                                       name="name" 
+                                       class="form-input" 
+                                       placeholder="Masukkan nama lengkap Anda"
+                                       required 
+                                       aria-describedby="name-error">
+                            </div>
+                            <div class="error-message" id="name-error"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone" class="form-label">
+                                Nomor Telepon <span class="required">*</span>
+                            </label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-phone input-icon" aria-hidden="true"></i>
+                                <input type="tel" 
+                                       id="phone" 
+                                       name="phone" 
+                                       class="form-input" 
+                                       placeholder="Contoh: 081234567890"
+                                       required 
+                                       aria-describedby="phone-error">
+                            </div>
+                            <div class="error-message" id="phone-error"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message" class="form-label">
+                            Apa yang ingin Anda pesan? <span class="required">*</span>
+                        </label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-comment input-icon" aria-hidden="true"></i>
+                            <textarea id="message" 
+                                      name="message" 
+                                      class="form-input form-textarea" 
+                                      rows="4" 
+                                      placeholder="Contoh: Saya ingin memesan benih cabe rawit merah 2 kg untuk lahan 1000 m²"
+                                      required 
+                                      aria-describedby="message-error"></textarea>
+                        </div>
+                        <div class="error-message" id="message-error"></div>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn" aria-describedby="submit-status">
+                        <span class="btn-text">Kirim ke WhatsApp</span>
+                        <span class="btn-loading">
+                            <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
+                            Mengirim...
+                        </span>
+                        <i class="fab fa-whatsapp btn-icon" aria-hidden="true"></i>
+                    </button>
+                    
+                    <div class="form-status" id="submit-status" role="status" aria-live="polite"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-main">
+                    <div class="footer-brand">
+                        <div class="footer-logo">
+                            <span class="logo-icon">🌶️</span>
+                            <span class="logo-text">MRATANI</span>
+                        </div>
+                        <p class="footer-description">
+                            Penyedia benih cabai berkualitas tinggi langsung dari petani terpercaya 
+                            di Desa Kebakalan. Kualitas terjamin, hasil panen melimpah.
+                        </p>
+                        <div class="social-links">
+                            <a href="#" class="social-link" aria-label="Follow us on Facebook">
+                                <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="Follow us on Instagram">
+                                <i class="fab fa-instagram" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://wa.me/6285740007900" class="social-link" aria-label="Contact us on WhatsApp">
+                                <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                            </a>
+                            <a href="mailto:info@mratani.com" class="social-link" aria-label="Send us an email">
+                                <i class="fas fa-envelope" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="footer-section">
-                    <h3>Produk</h3>
-                    <a href="#">Cabe Rawit Merah</a>
-                    <a href="#">Cabe Hijau Ceplus</a>
-                    <a href="#">Cabe Rawit Lokal</a>
+                
+                <div class="footer-sections">
+                    <div class="footer-section">
+                        <h3 class="footer-title">Produk</h3>
+                        <ul class="footer-links">
+                            <li><a href="#products" aria-label="View Cabe Rawit Merah">Cabe Rawit Merah</a></li>
+                            <li><a href="#products" aria-label="View Cabe Hijau Ceplus">Cabe Hijau Ceplus</a></li>
+                            <li><a href="#products" aria-label="View Cabe Rawit Lokal">Cabe Rawit Lokal</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3 class="footer-title">Informasi</h3>
+                        <ul class="footer-links">
+                            <li><a href="#about" aria-label="Learn about us">Tentang Kami</a></li>
+                            <li><a href="#village" aria-label="About our village">Desa Kebakalan</a></li>
+                            <li><a href="#tips" aria-label="View planting tips">Tips Menanam</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3 class="footer-title">Kontak</h3>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                <span>Desa Kebakalan, Kec. Baturraden</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone" aria-hidden="true"></i>
+                                <a href="tel:+6281234567890">+62 812-3456-7890</a>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-envelope" aria-hidden="true"></i>
+                                <a href="mailto:info@mratani.com">info@mratani.com</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            
             <div class="footer-bottom">
-                <p>&copy; 2024 MRATANI. Semua hak cipta dilindungi.</p>
+                <div class="footer-bottom-content">
+                    <p class="copyright">
+                        &copy; 2024 MRATANI. Semua hak cipta dilindungi.
+                    </p>
+                    <div class="footer-bottom-links">
+                        <a href="#" aria-label="Privacy Policy">Kebijakan Privasi</a>
+                        <a href="#" aria-label="Terms of Service">Syarat & Ketentuan</a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
 
     <!-- Scroll to Top Button -->
-    <div class="scroll-top" id="scrollTop">
-        <i class="fas fa-arrow-up"></i>
-    </div>
+    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </button>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/6285740007900" 
+       class="whatsapp-float" 
+       target="_blank" 
+       rel="noopener"
+       aria-label="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+        <span class="whatsapp-text">Chat Sekarang</span>
+    </a>
 
     <script src="script.js"></script>
 </body>
