@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,13 +33,28 @@
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
-    <!-- Styles -->
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <!-- Swiper.js -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+    <!-- Custom Styles -->
     <link rel="stylesheet" href="styles.css">
     
     <!-- Structured Data -->
@@ -64,185 +79,187 @@
         "url": "https://mratani.com",
         "sameAs": [
             "https://wa.me/6285740007900"
-        ],
-        "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Benih Cabai",
-            "itemListElement": [
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Product",
-                        "name": "Cabe Rawit Merah",
-                        "description": "Varietas unggulan dengan tingkat kepedasan tinggi"
-                    }
-                },
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Product",
-                        "name": "Cabe Hijau Ceplus",
-                        "description": "Cabai hijau dengan rasa segar dan tekstur renyah"
-                    }
-                },
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Product",
-                        "name": "Cabe Rawit Lokal",
-                        "description": "Varietas lokal yang tahan penyakit"
-                    }
-                }
-            ]
-        }
+        ]
     }
     </script>
 </head>
-<body>
+
+<body class="font-inter bg-gray-50 overflow-x-hidden" x-data="appData()">
+
     <!-- Loading Screen -->
-    <div id="loadingScreen" class="loading-screen">
-        <div class="loading-content">
-            <div class="loading-logo">🌶️</div>
-            <div class="loading-text">MRATANI</div>
-            <div class="loading-spinner"></div>
+    <div x-show="loading" 
+         x-transition:leave="transition ease-in duration-500"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0"
+         class="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-primary-600 to-primary-500">
+        <div class="text-center text-white">
+            <div class="text-6xl mb-4 animate-bounce-slow">🌶️</div>
+            <div class="font-poppins text-3xl font-bold mb-6 tracking-wider">MRATANI</div>
+            <div class="w-10 h-10 border-3 border-white border-t-transparent rounded-full animate-spin mx-auto"></div>
         </div>
     </div>
 
-    <!-- Header -->
-    <header role="banner">
-        <nav role="navigation" aria-label="Main navigation">
-            <a href="#home" class="logo" aria-label="MRATANI Homepage">
-                <span class="logo-icon">🌶️</span>
-                <span class="logo-text">MRATANI</span>
-            </a>
-            <ul class="nav-links">
-                <li><a href="#home" aria-label="Go to homepage">Beranda</a></li>
-                <li><a href="#products" aria-label="View our products">Produk</a></li>
-                <li><a href="#village" aria-label="About our village">Desa</a></li>
-                <li><a href="#contact" aria-label="Contact us">Kontak</a></li>
-            </ul>
-            <button class="mobile-menu" aria-label="Toggle mobile menu" aria-expanded="false">
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-            </button>
-        </nav>
-    </header>
-
     <!-- Hero Section -->
-    <section id="home" class="hero" role="banner">
-        <div class="hero-background">
-            <div class="hero-overlay"></div>
-        </div>
-        <div class="hero-content">
-            <h1 class="hero-title">
-                <span class="title-main">MRATANI</span>
-                <span class="title-sub">Benih Cabai Unggulan</span>
+    <section id="home" class="hero-bg min-h-screen flex items-center justify-center text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-black/20"></div>
+        
+        <!-- Floating Elements -->
+        <div class="absolute top-20 left-10 text-4xl animate-float opacity-20">🌱</div>
+        <div class="absolute top-40 right-20 text-3xl animate-float opacity-30 animation-delay-1s">🌿</div>
+        <div class="absolute bottom-40 left-20 text-5xl animate-float opacity-25 animation-delay-2s">🌾</div>
+        
+        <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto my-8">
+            <!-- Main Title -->
+            <h1 class="font-poppins text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 text-shadow"
+                data-aos="fade-up" data-aos-delay="400">
+                <span class="block">MRATANI</span>
+                <span class="block text-3xl sm:text-4xl lg:text-5xl font-semibold opacity-90">
+                    Benih Cabai Unggulan
+                </span>
             </h1>
-            <p class="hero-description">
+
+            <!-- Description -->
+            <p class="text-lg sm:text-xl lg:text-2xl mb-12 max-w-3xl mx-auto leading-relaxed opacity-95"
+               data-aos="fade-up" data-aos-delay="600">
                 Langsung dari petani berpengalaman di Desa Kebakalan. 
                 Kualitas terjamin, hasil panen melimpah, harga terjangkau.
             </p>
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <div class="stat-number">15+</div>
-                    <div class="stat-label">Tahun Pengalaman</div>
+
+            <!-- Stats -->
+            <div class="flex flex-col sm:flex-row justify-center items-center space-y-6 sm:space-y-0 sm:space-x-12 mb-12"
+                 data-aos="fade-up" data-aos-delay="800">
+                <div class="text-center">
+                    <div class="font-poppins text-4xl font-bold">15+</div>
+                    <div class="text-sm opacity-80">Tahun Pengalaman</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">1000+</div>
-                    <div class="stat-label">Petani Puas</div>
+                <div class="text-center">
+                    <div class="font-poppins text-4xl font-bold">1000+</div>
+                    <div class="text-sm opacity-80">Petani Puas</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">3</div>
-                    <div class="stat-label">Varietas Unggulan</div>
+                <div class="text-center">
+                    <div class="font-poppins text-4xl font-bold">3</div>
+                    <div class="text-sm opacity-80">Varietas Unggulan</div>
                 </div>
             </div>
-            <div class="hero-actions">
-                <a href="#contact" class="cta-primary" aria-label="Contact us now">
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6"
+                 data-aos="fade-up" data-aos-delay="1000">
+                <a href="#contact" 
+                   class="inline-flex items-center space-x-2 bg-white text-primary-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
                     <span>Hubungi Kami</span>
-                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    <i class="fas fa-arrow-right"></i>
                 </a>
-                <a href="#products" class="cta-secondary" aria-label="View our products">
+                <a href="#products" 
+                   class="inline-flex items-center space-x-2 glass px-8 py-4 rounded-xl font-semibold hover:bg-white/20 transform hover:scale-105 transition-all duration-300">
                     <span>Lihat Produk</span>
                 </a>
             </div>
         </div>
-        <div class="scroll-indicator" aria-label="Scroll down">
-            <div class="scroll-mouse">
-                <div class="scroll-wheel"></div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center scroll-indicator">
+            <div class="w-6 h-10 border-2 border-white rounded-full flex justify-center mb-2">
+                <div class="w-1 h-3 bg-white rounded-full mt-2 animate-bounce"></div>
             </div>
-            <span class="scroll-text">Scroll untuk melihat lebih</span>
+            <p class="text-xs uppercase tracking-wider opacity-80">Scroll untuk melihat lebih</p>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about" role="main">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-badge">Tentang Kami</span>
-                <h2 class="section-title">Cerita MRATANI</h2>
-                <p class="section-subtitle">
+    <section id="about" class="py-20 lg:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-block bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wider mb-4">
+                    Tentang Kami
+                </span>
+                <h2 class="font-poppins text-4xl lg:text-5xl font-bold text-gray-800 mb-6">
+                    Cerita MRATANI
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                     Perjalanan kami dalam menghadirkan benih cabai berkualitas tinggi
                 </p>
             </div>
-            
-            <div class="about-content animate-on-scroll">
-                <div class="about-text">
-                    <div class="text-block">
-                        <h3>Dedikasi untuk Kualitas</h3>
-                        <p>MRATANI adalah usaha pertanian keluarga yang didirikan oleh Bapak Sarwan di Desa Kebakalan. Dengan pengalaman lebih dari 15 tahun dalam budidaya cabai, kami berkomitmen untuk menyediakan benih cabai berkualitas tinggi yang telah terbukti memberikan hasil panen yang melimpah.</p>
+
+            <div class="grid lg:grid-cols-2 gap-16 items-start">
+                <!-- Content -->
+                <div class="space-y-8" data-aos="fade-right">
+                    <div>
+                        <h3 class="font-poppins text-2xl font-semibold text-gray-800 mb-4">
+                            Dedikasi untuk Kualitas
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed text-lg">
+                            MRATANI adalah usaha pertanian keluarga yang didirikan oleh Bapak Sarwan di Desa Kebakalan. 
+                            Dengan pengalaman lebih dari 15 tahun dalam budidaya cabai, kami berkomitmen untuk menyediakan 
+                            benih cabai berkualitas tinggi yang telah terbukti memberikan hasil panen yang melimpah.
+                        </p>
                     </div>
-                    
-                    <div class="text-block">
-                        <h3>Misi Kami</h3>
-                        <p>Membantu petani Indonesia mendapatkan benih cabai terbaik dengan harga yang terjangkau. Setiap benih yang kami produksi telah melalui proses seleksi ketat dan perawatan khusus untuk memastikan kualitas dan daya tumbuh yang optimal.</p>
+
+                    <div>
+                        <h3 class="font-poppins text-2xl font-semibold text-gray-800 mb-4">
+                            Misi Kami
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed text-lg">
+                            Membantu petani Indonesia mendapatkan benih cabai terbaik dengan harga yang terjangkau. 
+                            Setiap benih yang kami produksi telah melalui proses seleksi ketat dan perawatan khusus 
+                            untuk memastikan kualitas dan daya tumbuh yang optimal.
+                        </p>
                     </div>
-                    
-                    <div class="features-grid">
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <i class="fas fa-seedling" aria-hidden="true"></i>
+
+                    <!-- Features -->
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-seedling text-primary-600 text-xl"></i>
                             </div>
-                            <div class="feature-content">
-                                <h4>Kualitas Terjamin</h4>
-                                <p>Proses seleksi ketat untuk setiap benih</p>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">Kualitas Terjamin</h4>
+                                <p class="text-gray-600 text-sm">Proses seleksi ketat untuk setiap benih</p>
                             </div>
                         </div>
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <i class="fas fa-leaf" aria-hidden="true"></i>
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-leaf text-primary-600 text-xl"></i>
                             </div>
-                            <div class="feature-content">
-                                <h4>Ramah Lingkungan</h4>
-                                <p>Budidaya berkelanjutan dan alami</p>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">Ramah Lingkungan</h4>
+                                <p class="text-gray-600 text-sm">Budidaya berkelanjutan dan alami</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="founder-section">
-                    <div class="founder-card">
-                        <div class="founder-image">
-                            <img src="assets/sarwan.jpg" alt="Bapak Sarwan - Pendiri MRATANI" class="founder-photo">
-                            <div class="founder-badge">
-                                <i class="fas fa-award" aria-hidden="true"></i>
+
+                <!-- Founder Card -->
+                <div class="sticky top-24" data-aos="fade-left">
+                    <div class="bg-white rounded-3xl p-8 shadow-xl border border-gray-100 hover-lift">
+                        <div class="text-center mb-6">
+                            <div class="relative inline-block">
+                                <img src="assets/sarwan.jpg" 
+                                     alt="Bapak Sarwan - Pendiri MRATANI" 
+                                     class="w-32 h-32 rounded-full object-cover border-4 border-primary-100">
+                                <div class="absolute -top-2 -right-2 w-8 h-8 bg-primary-500 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-award text-white text-sm"></i>
+                                </div>
                             </div>
                         </div>
-                        <div class="founder-info">
-                            <h3>Bapak Sarwan</h3>
-                            <p class="founder-title">Pendiri & Petani Ahli</p>
-                            <p class="founder-description">
+                        
+                        <div class="text-center">
+                            <h3 class="font-poppins text-2xl font-bold text-gray-800 mb-1">Bapak Sarwan</h3>
+                            <p class="text-primary-600 font-semibold mb-4">Pendiri & Petani Ahli</p>
+                            <p class="text-gray-600 leading-relaxed mb-6">
                                 Petani berpengalaman dengan dedikasi tinggi untuk menghasilkan benih cabai terbaik. 
                                 Memimpin MRATANI dengan visi menjadi penyedia benih cabai terpercaya di Indonesia.
                             </p>
-                            <div class="founder-achievements">
-                                <div class="achievement">
-                                    <span class="achievement-number">15+</span>
-                                    <span class="achievement-label">Tahun Pengalaman</span>
+                            
+                            <div class="flex justify-center space-x-8">
+                                <div class="text-center">
+                                    <div class="font-poppins text-2xl font-bold text-primary-600">15+</div>
+                                    <div class="text-xs text-gray-500 uppercase tracking-wider">Tahun Pengalaman</div>
                                 </div>
-                                <div class="achievement">
-                                    <span class="achievement-number">100%</span>
-                                    <span class="achievement-label">Organik</span>
+                                <div class="text-center">
+                                    <div class="font-poppins text-2xl font-bold text-primary-600">100%</div>
+                                    <div class="text-xs text-gray-500 uppercase tracking-wider">Organik</div>
                                 </div>
                             </div>
                         </div>
@@ -253,260 +270,252 @@
     </section>
 
     <!-- Products Section -->
-    <section id="products" class="products" role="main">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-badge">Produk Unggulan</span>
-                <h2 class="section-title">Benih Cabai Berkualitas</h2>
-                <p class="section-subtitle">
+    <section id="products" class="py-20 lg:py-32 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-block bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wider mb-4">
+                    Produk Unggulan
+                </span>
+                <h2 class="font-poppins text-4xl lg:text-5xl font-bold text-gray-800 mb-6">
+                    Benih Cabai Berkualitas
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                     Pilihan varietas terbaik yang telah terbukti memberikan hasil panen optimal
                 </p>
             </div>
-            
-            <div class="products-grid">
-                <article class="product-card animate-on-scroll" data-product="cabe-rawit-merah">
-                    <div class="product-image-container">
-                        <img src="assets/cabai-rawit-merah.jpeg" alt="Cabe Rawit Merah - Varietas unggulan dengan kepedasan tinggi" class="product-image" loading="lazy">
-                        <div class="product-badge">
-                            <span>Terlaris</span>
+
+            <!-- Products Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Product 1 -->
+                <div class="bg-white rounded-3xl overflow-hidden shadow-lg hover-lift group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative overflow-hidden cursor-pointer" @click="openProductModal('Cabe Rawit Merah', 'assets/cabe-rawit-merah.png', 'Varietas unggulan dengan tingkat kepedasan tinggi dan hasil panen melimpah. Cocok untuk berbagai jenis masakan tradisional Indonesia.')">
+                        <img src="assets/cabe-rawit-merah.png" 
+                             alt="Cabe Rawit Merah" 
+                             class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                                Terlaris
+                            </span>
                         </div>
-                        <div class="product-overlay">
-                            <button class="quick-view-btn" aria-label="Quick view Cabe Rawit Merah">
-                                <i class="fas fa-eye" aria-hidden="true"></i>
+                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <button class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-gray-700 hover:bg-gray-100 transition-colors">
+                                <i class="fas fa-eye"></i>
                             </button>
                         </div>
                     </div>
-                    <div class="product-content">
-                        <div class="product-category">Varietas Premium</div>
-                        <h3 class="product-title">Cabe Rawit Merah</h3>
-                        <p class="product-description">
+                    
+                    <div class="p-6">
+                        <div class="text-primary-600 text-sm font-semibold uppercase tracking-wider mb-2">
+                            Varietas Premium
+                        </div>
+                        <h3 class="font-poppins text-xl font-bold text-gray-800 mb-3">
+                            Cabe Rawit Merah
+                        </h3>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
                             Varietas unggulan dengan tingkat kepedasan tinggi dan hasil panen melimpah. 
                             Cocok untuk berbagai jenis masakan tradisional Indonesia.
                         </p>
-                        <div class="product-features">
-                            <div class="feature-tag">
-                                <i class="fas fa-fire" aria-hidden="true"></i>
+                        
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="inline-flex items-center space-x-1 bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-fire"></i>
                                 <span>Pedas Tinggi</span>
-                            </div>
-                            <div class="feature-tag">
-                                <i class="fas fa-chart-line" aria-hidden="true"></i>
+                            </span>
+                            <span class="inline-flex items-center space-x-1 bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-chart-line"></i>
                                 <span>Hasil Melimpah</span>
-                            </div>
+                            </span>
                         </div>
-                        <div class="product-actions">
-                            <a href="https://wa.me/6285740007900?text=Halo%20Pak%20Sarwan,%20saya%20tertarik%20dengan%20Cabe%20Rawit%20Merah" 
-                               class="whatsapp-btn" 
-                               aria-label="Order Cabe Rawit Merah via WhatsApp"
-                               target="_blank" 
-                               rel="noopener">
-                                <i class="fab fa-whatsapp" aria-hidden="true"></i>
-                                <span>Pesan Sekarang</span>
-                            </a>
-                        </div>
+                        
+                        <a href="https://wa.me/6285740007900?text=Halo%20Pak%20Sarwan,%20saya%20tertarik%20dengan%20Cabe%20Rawit%20Merah" 
+                           target="_blank" 
+                           class="w-full inline-flex items-center justify-center space-x-2 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 ripple">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>Pesan Sekarang</span>
+                        </a>
                     </div>
-                </article>
+                </div>
 
-                <article class="product-card animate-on-scroll" data-product="cabe-hijau">
-                    <div class="product-image-container">
-                        <img src="assets/cabai-hijau.png" alt="Cabe Hijau Ceplus - Cabai hijau segar dengan tekstur renyah" class="product-image" loading="lazy">
-                        <div class="product-badge eco">
-                            <span>Organik</span>
+                <!-- Product 2 -->
+                <div class="bg-white rounded-3xl overflow-hidden shadow-lg hover-lift group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative overflow-hidden cursor-pointer" @click="openProductModal('Cabe Hijau Ceplus', 'assets/cabai-hijau.png', 'Cabai hijau dengan rasa segar dan tekstur renyah. Ideal untuk lalapan dan berbagai olahan sayuran segar.')">
+                        <img src="assets/cabai-hijau.png" 
+                             alt="Cabe Hijau Ceplus" 
+                             class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-green-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                                Organik
+                            </span>
                         </div>
-                        <div class="product-overlay">
-                            <button class="quick-view-btn" aria-label="Quick view Cabe Hijau Ceplus">
-                                <i class="fas fa-eye" aria-hidden="true"></i>
+                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <button class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-gray-700 hover:bg-gray-100 transition-colors">
+                                <i class="fas fa-eye"></i>
                             </button>
                         </div>
                     </div>
-                    <div class="product-content">
-                        <div class="product-category">Varietas Segar</div>
-                        <h3 class="product-title">Cabe Hijau Ceplus</h3>
-                        <p class="product-description">
+                    
+                    <div class="p-6">
+                        <div class="text-primary-600 text-sm font-semibold uppercase tracking-wider mb-2">
+                            Varietas Segar
+                        </div>
+                        <h3 class="font-poppins text-xl font-bold text-gray-800 mb-3">
+                            Cabe Hijau Ceplus
+                        </h3>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
                             Cabai hijau dengan rasa segar dan tekstur renyah. 
                             Ideal untuk lalapan dan berbagai olahan sayuran segar.
                         </p>
-                        <div class="product-features">
-                            <div class="feature-tag">
-                                <i class="fas fa-leaf" aria-hidden="true"></i>
+                        
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="inline-flex items-center space-x-1 bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-leaf"></i>
                                 <span>Segar</span>
-                            </div>
-                            <div class="feature-tag">
-                                <i class="fas fa-heart" aria-hidden="true"></i>
+                            </span>
+                            <span class="inline-flex items-center space-x-1 bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-heart"></i>
                                 <span>Sehat</span>
-                            </div>
+                            </span>
                         </div>
-                        <div class="product-actions">
-                            <a href="https://wa.me/6285740007900?text=Halo%20Pak%20Sarwan,%20saya%20tertarik%20dengan%20Cabe%20Hijau%20Ceplus" 
-                               class="whatsapp-btn" 
-                               aria-label="Order Cabe Hijau Ceplus via WhatsApp"
-                               target="_blank" 
-                               rel="noopener">
-                                <i class="fab fa-whatsapp" aria-hidden="true"></i>
-                                <span>Pesan Sekarang</span>
-                            </a>
-                        </div>
+                        
+                        <a href="https://wa.me/6285740007900?text=Halo%20Pak%20Sarwan,%20saya%20tertarik%20dengan%20Cabe%20Hijau%20Ceplus" 
+                           target="_blank" 
+                           class="w-full inline-flex items-center justify-center space-x-2 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 ripple">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>Pesan Sekarang</span>
+                        </a>
                     </div>
-                </article>
+                </div>
 
-                <article class="product-card animate-on-scroll" data-product="cabe-rawit-lokal">
-                    <div class="product-image-container">
-                        <img src="assets/cabai-rawit.jpeg" alt="Cabe Rawit Lokal - Varietas lokal tahan penyakit" class="product-image" loading="lazy">
-                        <div class="product-badge local">
-                            <span>Lokal</span>
+                <!-- Product 3 -->
+                <div class="bg-white rounded-3xl overflow-hidden shadow-lg hover-lift group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="relative overflow-hidden cursor-pointer" @click="openProductModal('Cabe Rawit Lokal', 'assets/cabe-rawit.png', 'Varietas lokal yang telah beradaptasi dengan iklim Indonesia. Tahan penyakit dan mudah dibudidayakan.')">
+                        <img src="assets/cabe-rawit.png" 
+                             alt="Cabe Rawit Lokal" 
+                             class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-yellow-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                                Lokal
+                            </span>
                         </div>
-                        <div class="product-overlay">
-                            <button class="quick-view-btn" aria-label="Quick view Cabe Rawit Lokal">
-                                <i class="fas fa-eye" aria-hidden="true"></i>
+                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <button class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-gray-700 hover:bg-gray-100 transition-colors">
+                                <i class="fas fa-eye"></i>
                             </button>
                         </div>
                     </div>
-                    <div class="product-content">
-                        <div class="product-category">Varietas Adaptif</div>
-                        <h3 class="product-title">Cabe Rawit Lokal</h3>
-                        <p class="product-description">
+                    
+                    <div class="p-6">
+                        <div class="text-primary-600 text-sm font-semibold uppercase tracking-wider mb-2">
+                            Varietas Adaptif
+                        </div>
+                        <h3 class="font-poppins text-xl font-bold text-gray-800 mb-3">
+                            Cabe Rawit Lokal
+                        </h3>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
                             Varietas lokal yang telah beradaptasi dengan iklim Indonesia. 
                             Tahan penyakit dan mudah dibudidayakan.
                         </p>
-                        <div class="product-features">
-                            <div class="feature-tag">
-                                <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                        
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="inline-flex items-center space-x-1 bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-shield-alt"></i>
                                 <span>Tahan Penyakit</span>
-                            </div>
-                            <div class="feature-tag">
-                                <i class="fas fa-seedling" aria-hidden="true"></i>
+                            </span>
+                            <span class="inline-flex items-center space-x-1 bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-seedling"></i>
                                 <span>Mudah Tanam</span>
-                            </div>
+                            </span>
                         </div>
-                        <div class="product-actions">
-                            <a href="https://wa.me/6285740007900?text=Halo%20Pak%20Sarwan,%20saya%20tertarik%20dengan%20Cabe%20Rawit%20Lokal" 
-                               class="whatsapp-btn" 
-                               aria-label="Order Cabe Rawit Lokal via WhatsApp"
-                               target="_blank" 
-                               rel="noopener">
-                                <i class="fab fa-whatsapp" aria-hidden="true"></i>
-                                <span>Pesan Sekarang</span>
-                            </a>
-                        </div>
+                        
+                        <a href="https://wa.me/6285740007900?text=Halo%20Pak%20Sarwan,%20saya%20tertarik%20dengan%20Cabe%20Rawit%20Lokal" 
+                           target="_blank" 
+                           class="w-full inline-flex items-center justify-center space-x-2 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 ripple">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>Pesan Sekarang</span>
+                        </a>
                     </div>
-                </article>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Village Section -->
-    <section id="village" class="village" role="main">
-        <div class="village-background">
-            <div class="village-overlay"></div>
+    <section id="village" class="village-bg py-20 lg:py-32 text-white relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 left-10 text-6xl">🌾</div>
+            <div class="absolute top-32 right-20 text-4xl">🌱</div>
+            <div class="absolute bottom-20 left-32 text-5xl">🌿</div>
+            <div class="absolute bottom-40 right-10 text-3xl">🍃</div>
         </div>
-        <div class="container">
-            <div class="village-content animate-on-scroll">
-                <div class="section-header">
-                    <span class="section-badge light">Asal Kami</span>
-                    <h2 class="section-title light">Desa Kebakalan</h2>
-                    <p class="section-subtitle light">
-                        Tanah subur yang melahirkan benih cabai berkualitas tinggi
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <!-- Section Header -->
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-block glass px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wider mb-4">
+                    Asal Kami
+                </span>
+                <h2 class="font-poppins text-4xl lg:text-5xl font-bold mb-6 text-shadow">
+                    Desa Kebakalan
+                </h2>
+                <p class="text-xl max-w-3xl mx-auto opacity-90">
+                    Tanah subur yang melahirkan benih cabai berkualitas tinggi
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-16 items-start">
+                <!-- Content -->
+                <div class="space-y-8" data-aos="fade-right">
+                    <p class="text-lg leading-relaxed opacity-95">
+                        Desa Kebakalan terletak di daerah yang memiliki tanah subur dan iklim yang sangat mendukung 
+                        untuk budidaya cabai. Dengan tradisi pertanian yang telah turun-temurun, masyarakat desa ini 
+                        memiliki keahlian khusus dalam menghasilkan benih cabai berkualitas tinggi.
+                    </p>
+                    
+                    <p class="text-lg leading-relaxed opacity-95">
+                        MRATANI berperan aktif dalam mengembangkan potensi pertanian desa dengan menerapkan teknik 
+                        budidaya modern sambil tetap mempertahankan kearifan lokal. Kami bangga menjadi bagian dari 
+                        komunitas petani yang berkomitmen untuk kemajuan pertanian Indonesia.
                     </p>
                 </div>
                 
-                <div class="village-info">
-                    <div class="village-text">
-                        <p>
-                            Desa Kebakalan terletak di daerah yang memiliki tanah subur dan iklim yang sangat mendukung 
-                            untuk budidaya cabai. Dengan tradisi pertanian yang telah turun-temurun, masyarakat desa ini 
-                            memiliki keahlian khusus dalam menghasilkan benih cabai berkualitas tinggi.
-                        </p>
-                        
-                        <p>
-                            MRATANI berperan aktif dalam mengembangkan potensi pertanian desa dengan menerapkan teknik 
-                            budidaya modern sambil tetap mempertahankan kearifan lokal. Kami bangga menjadi bagian dari 
-                            komunitas petani yang berkomitmen untuk kemajuan pertanian Indonesia.
-                        </p>
+                <!-- Features -->
+                <div class="space-y-6" data-aos="fade-left">
+                    <div class="glass p-6 rounded-2xl">
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-12 h-12 glass rounded-xl flex items-center justify-center">
+                                <i class="fas fa-mountain text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white mb-2">Iklim Ideal</h4>
+                                <p class="text-white/80">Kondisi cuaca yang sempurna untuk budidaya cabai</p>
+                            </div>
+                        </div>
                     </div>
                     
-                    <div class="village-features">
-                        <div class="village-feature">
-                            <div class="feature-icon">
-                                <i class="fas fa-mountain" aria-hidden="true"></i>
+                    <div class="glass p-6 rounded-2xl">
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-12 h-12 glass rounded-xl flex items-center justify-center">
+                                <i class="fas fa-tractor text-white text-xl"></i>
                             </div>
-                            <div class="feature-content">
-                                <h4>Iklim Ideal</h4>
-                                <p>Kondisi cuaca yang sempurna untuk budidaya cabai</p>
-                            </div>
-                        </div>
-                        <div class="village-feature">
-                            <div class="feature-icon">
-                                <i class="fas fa-tractor" aria-hidden="true"></i>
-                            </div>
-                            <div class="feature-content">
-                                <h4>Tradisi Pertanian</h4>
-                                <p>Pengalaman turun-temurun dalam bertani</p>
+                            <div>
+                                <h4 class="font-semibold text-white mb-2">Tradisi Pertanian</h4>
+                                <p class="text-white/80">Pengalaman turun-temurun dalam bertani</p>
                             </div>
                         </div>
-                        <div class="village-feature">
-                            <div class="feature-icon">
-                                <i class="fas fa-users" aria-hidden="true"></i>
-                            </div>
-                            <div class="feature-content">
-                                <h4>Komunitas Kuat</h4>
-                                <p>Gotong royong dalam mengembangkan pertanian</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tips Section -->
-    <section id="tips" class="tips" role="main">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-badge">Tips & Panduan</span>
-                <h2 class="section-title">Cara Menanam Cabai yang Benar</h2>
-                <p class="section-subtitle">
-                    Panduan lengkap dari ahli untuk hasil panen yang optimal
-                </p>
-            </div>
-            
-            <div class="tips-content animate-on-scroll">
-                <div class="tips-grid">
-                    <div class="tip-card">
-                        <div class="tip-number">01</div>
-                        <div class="tip-icon">
-                            <i class="fas fa-seedling" aria-hidden="true"></i>
-                        </div>
-                        <h3>Persiapan Lahan</h3>
-                        <p>
-                            Pastikan lahan memiliki drainase yang baik dan pH tanah antara 6,0-7,0. 
-                            Gemburkan tanah hingga kedalaman 20-30 cm dan campurkan dengan kompos 
-                            atau pupuk kandang yang telah matang.
-                        </p>
                     </div>
                     
-                    <div class="tip-card">
-                        <div class="tip-number">02</div>
-                        <div class="tip-icon">
-                            <i class="fas fa-spa" aria-hidden="true"></i>
+                    <div class="glass p-6 rounded-2xl">
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-12 h-12 glass rounded-xl flex items-center justify-center">
+                                <i class="fas fa-users text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white mb-2">Komunitas Kuat</h4>
+                                <p class="text-white/80">Gotong royong dalam mengembangkan pertanian</p>
+                            </div>
                         </div>
-                        <h3>Teknik Penyemaian</h3>
-                        <p>
-                            Rendam benih dalam air hangat selama 2-3 jam sebelum disemai. 
-                            Gunakan media semai berupa campuran tanah, kompos, dan sekam bakar 
-                            dengan perbandingan 1:1:1.
-                        </p>
-                    </div>
-                    
-                    <div class="tip-card">
-                        <div class="tip-number">03</div>
-                        <div class="tip-icon">
-                            <i class="fas fa-tint" aria-hidden="true"></i>
-                        </div>
-                        <h3>Perawatan Rutin</h3>
-                        <p>
-                            Lakukan penyiraman secara teratur, terutama pada pagi dan sore hari. 
-                            Berikan pupuk NPK sesuai dosis anjuran setiap 2 minggu sekali dan 
-                            pantau dari serangan hama.
-                        </p>
                     </div>
                 </div>
             </div>
@@ -514,287 +523,711 @@
     </section>
 
     <!-- Map Section -->
-    <section id="map" class="map" role="main">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-badge">Lokasi</span>
-                <h2 class="section-title">Temukan Kami</h2>
-                <p class="section-subtitle">
-                    Kunjungi langsung kebun kami di Desa Kebakalan
+    <section id="map" class="py-20 lg:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-block bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wider mb-4">
+                    Lokasi Kami
+                </span>
+                <h2 class="font-poppins text-4xl lg:text-5xl font-bold text-gray-800 mb-6">
+                    Temukan Kami di Desa Kebakalan
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Kunjungi langsung kebun kami untuk melihat proses budidaya cabai berkualitas tinggi
                 </p>
             </div>
-            
-            <div class="map-container animate-on-scroll">
-                <div class="map-info">
-                    <div class="location-card">
-                        <div class="location-icon">
-                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Location Info -->
+                <div class="lg:col-span-1 space-y-6" data-aos="fade-right">
+                    <div class="bg-gray-50 rounded-2xl p-6 hover-lift">
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-map-marker-alt text-red-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800 mb-2">Alamat Lengkap</h3>
+                                <p class="text-gray-600 text-sm">
+                                    Desa Kebakalan, Kecamatan Baturraden<br>
+                                    Kabupaten Banyumas, Jawa Tengah
+                                </p>
+                            </div>
                         </div>
-                        <div class="location-details">
-                            <h3>MRATANI Farm</h3>
-                            <p>Desa Kebakalan, Kecamatan Karanggayam</p>
-                            <p>Kebumen, Jawa Tengah</p>
-                            <div class="location-actions">
-                                <a href="https://maps.app.goo.gl/SepSkBxuEYdNmDKh7" 
-                                   target="_blank" 
-                                   rel="noopener" 
-                                   class="direction-btn"
-                                   aria-label="Get directions to MRATANI Farm">
-                                    <i class="fas fa-directions" aria-hidden="true"></i>
-                                    <span>Petunjuk Arah</span>
+                    </div>                    
+
+                    <div class="bg-gray-50 rounded-2xl p-6 hover-lift">
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-phone text-green-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800 mb-2">Hubungi Sebelum Datang</h3>
+                                <p class="text-gray-600 text-sm mb-2">
+                                    Pastikan kami ada di tempat
+                                </p>
+                                <a href="tel:+6285740007900" 
+                                   class="text-primary-600 font-semibold hover:text-primary-700 transition-colors">
+                                    +62 857-4000-7900
                                 </a>
                             </div>
                         </div>
                     </div>
+
+                    <a href="https://maps.app.goo.gl/SepSkBxuEYdNmDKh7" 
+                       target="_blank"
+                       class="w-full inline-flex items-center justify-center space-x-2 bg-primary-500 hover:bg-primary-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300">
+                        <i class="fas fa-directions"></i>
+                        <span>Buka di Google Maps</span>
+                    </a>
                 </div>
-                <div class="map-embed">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126459.57830714052!2d109.1447!3d-7.4319!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e655ea49d9f9885%3A0x5027a76e356ab40!2sKebakalan%2C%20Mandiraja%2C%20Banjarnegara%20Regency%2C%20Central%20Java!5e0!3m2!1sen!2sid!4v1703123456789!5m2!1sen!2sid"
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade"
-                        title="Lokasi MRATANI di Desa Kebakalan"
-                        aria-label="Google Maps showing MRATANI location in Desa Kebakalan">
-                    </iframe>
+
+                <!-- Map Embed -->
+                <div class="lg:col-span-2" data-aos="fade-left">
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-200 h-96">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.2!2d109.2!3d-7.3!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwMTgnMDAuMCJTIDEwOcKwMTInMDAuMCJF!5e0!3m2!1sen!2sid!4v1234567890"
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tips Section -->
+    <section id="tips" class="py-20 lg:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-block bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wider mb-4">
+                    Tips & Panduan
+                </span>
+                <h2 class="font-poppins text-4xl lg:text-5xl font-bold text-gray-800 mb-6">
+                    Cara Menanam Cabai yang Benar
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Panduan lengkap dari ahli untuk hasil panen yang optimal
+                </p>
+            </div>
+
+            <!-- Tips Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Tip 1 -->
+                <div class="bg-gray-50 rounded-3xl p-8 hover-lift relative" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute top-6 right-6 w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center">
+                        <span class="font-poppins font-bold text-primary-600">01</span>
+                    </div>
+                    <div class="w-16 h-16 bg-primary-500 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-seedling text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-poppins text-xl font-bold text-gray-800 mb-4">
+                        Persiapan Lahan
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Pastikan lahan memiliki drainase yang baik dan pH tanah antara 6,0-7,0. 
+                        Gemburkan tanah hingga kedalaman 20-30 cm dan campurkan dengan kompos 
+                        atau pupuk kandang yang telah matang.
+                    </p>
+                </div>
+
+                <!-- Tip 2 -->
+                <div class="bg-gray-50 rounded-3xl p-8 hover-lift relative" data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute top-6 right-6 w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center">
+                        <span class="font-poppins font-bold text-primary-600">02</span>
+                    </div>
+                    <div class="w-16 h-16 bg-primary-500 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-spa text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-poppins text-xl font-bold text-gray-800 mb-4">
+                        Teknik Penyemaian
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Rendam benih dalam air hangat selama 2-3 jam sebelum disemai. 
+                        Gunakan media semai berupa campuran tanah, kompos, dan sekam bakar 
+                        dengan perbandingan 1:1:1.
+                    </p>
+                </div>
+
+                <!-- Tip 3 -->
+                <div class="bg-gray-50 rounded-3xl p-8 hover-lift relative" data-aos="fade-up" data-aos-delay="300">
+                    <div class="absolute top-6 right-6 w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center">
+                        <span class="font-poppins font-bold text-primary-600">03</span>
+                    </div>
+                    <div class="w-16 h-16 bg-primary-500 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-tint text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-poppins text-xl font-bold text-gray-800 mb-4">
+                        Perawatan Rutin
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Lakukan penyiraman secara teratur, terutama pada pagi dan sore hari. 
+                        Berikan pupuk NPK sesuai dosis anjuran setiap 2 minggu sekali dan 
+                        pantau dari serangan hama.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact" role="main">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-badge">Hubungi Kami</span>
-                <h2 class="section-title">Mari Berkolaborasi</h2>
-                <p class="section-subtitle">
+    <section id="contact" class="py-20 lg:py-32 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-block bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wider mb-4">
+                    Hubungi Kami
+                </span>
+                <h2 class="font-poppins text-4xl lg:text-5xl font-bold text-gray-800 mb-6">
+                    Mari Berkolaborasi
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                     Siap membantu Anda mendapatkan benih cabai terbaik
                 </p>
             </div>
-            
-            <div class="contact-content">
-                <div class="contact-info animate-on-scroll">
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fab fa-whatsapp" aria-hidden="true"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>WhatsApp</h3>
-                            <p>Respon cepat dalam 5 menit</p>
-                            <a href="https://wa.me/6285740007900" 
-                               class="contact-link"
-                               target="_blank" 
-                               rel="noopener"
-                               aria-label="Contact us via WhatsApp">
-                                +62 857-4000-7900
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone" aria-hidden="true"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>Telepon</h3>
-                            <p>Senin - Sabtu, 08:00 - 17:00</p>
-                            <a href="tel:+6285740007900" 
-                               class="contact-link"
-                               aria-label="Call us">
-                                +62 857-4000-7900
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope" aria-hidden="true"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>Email</h3>
-                            <p>Untuk pertanyaan detail</p>
-                            <a href="mailto:info@mratani.com" 
-                               class="contact-link"
-                               aria-label="Send us an email">
-                                info@mratani.com
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <form class="contact-form animate-on-scroll" id="contactForm" novalidate>
-                    <div class="form-header">
-                        <h3>Kirim Pesan</h3>
-                        <p>Isi form di bawah dan kami akan menghubungi Anda segera</p>
-                    </div>
-                    
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="name" class="form-label">
-                                Nama Lengkap <span class="required">*</span>
-                            </label>
-                            <div class="input-wrapper">
-                                <i class="fas fa-user input-icon" aria-hidden="true"></i>
-                                <input type="text" 
-                                       id="name" 
-                                       name="name" 
-                                       class="form-input" 
-                                       placeholder="Masukkan nama lengkap Anda"
-                                       required 
-                                       aria-describedby="name-error">
+
+            <div class="grid lg:grid-cols-2 gap-16">
+                <!-- Contact Info -->
+                <div class="space-y-8" data-aos="fade-right">
+                    <!-- WhatsApp -->
+                    <div class="bg-white rounded-2xl p-6 hover-lift">
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
+                                <i class="fab fa-whatsapp text-green-600 text-xl"></i>
                             </div>
-                            <div class="error-message" id="name-error"></div>
+                            <div class="flex-1">
+                                <h3 class="font-semibold text-gray-800 mb-1">WhatsApp</h3>
+                                <p class="text-gray-600 text-sm mb-2">Respon cepat dalam 5 menit</p>
+                                <a href="https://wa.me/6285740007900" 
+                                   target="_blank" 
+                                   class="text-primary-600 font-semibold hover:text-primary-700 transition-colors">
+                                    +62 857-4000-7900
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="bg-white rounded-2xl p-6 hover-lift">
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-phone text-blue-600 text-xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-semibold text-gray-800 mb-1">Telepon</h3>
+                                <p class="text-gray-600 text-sm mb-2">Senin - Sabtu, 08:00 - 17:00</p>
+                                <a href="tel:+6285740007900" 
+                                   class="text-primary-600 font-semibold hover:text-primary-700 transition-colors">
+                                    +62 857-4000-7900
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="bg-white rounded-2xl p-6 hover-lift">
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-envelope text-purple-600 text-xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-semibold text-gray-800 mb-1">Email</h3>
+                                <p class="text-gray-600 text-sm mb-2">Untuk pertanyaan detail</p>
+                                <a href="mailto:info@mratani.com" 
+                                   class="text-primary-600 font-semibold hover:text-primary-700 transition-colors">
+                                    info@mratani.com
+                                </a>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+
+                <!-- Contact Form -->
+                <div class="bg-white rounded-3xl p-8 shadow-lg" data-aos="fade-left">
+                    <div class="mb-8">
+                        <h3 class="font-poppins text-2xl font-bold text-gray-800 mb-2">
+                            Kirim Pesan
+                        </h3>
+                        <p class="text-gray-600">
+                            Isi form di bawah dan kami akan menghubungi Anda segera
+                        </p>
+                    </div>
+
+                    <form x-data="contactForm()" @submit.prevent="submitForm" class="space-y-6">
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">
+                                    Nama Lengkap <span class="text-red-500">*</span>
+                                </label>
+                                <div class="relative">
+                                    <i class="fas fa-user absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                    <input type="text" 
+                                           id="name" 
+                                           x-model="form.name"
+                                           class="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-primary-500 focus:outline-none transition-colors"
+                                           placeholder="Masukkan nama lengkap Anda"
+                                           required>
+                                </div>
+                                <p x-show="errors.name" x-text="errors.name" class="text-red-500 text-sm mt-1"></p>
+                            </div>
+                            
+                            <div>
+                                <label for="phone" class="block text-sm font-semibold text-gray-700 mb-2">
+                                    Nomor Telepon <span class="text-red-500">*</span>
+                                </label>
+                                <div class="relative">
+                                    <i class="fas fa-phone absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                    <input type="tel" 
+                                           id="phone" 
+                                           x-model="form.phone"
+                                           class="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-primary-500 focus:outline-none transition-colors"
+                                           placeholder="Contoh: 081234567890"
+                                           required>
+                                </div>
+                                <p x-show="errors.phone" x-text="errors.phone" class="text-red-500 text-sm mt-1"></p>
+                            </div>
                         </div>
                         
-                        <div class="form-group">
-                            <label for="phone" class="form-label">
-                                Nomor Telepon <span class="required">*</span>
+                        <div>
+                            <label for="message" class="block text-sm font-semibold text-gray-700 mb-2">
+                                Apa yang ingin Anda pesan? <span class="text-red-500">*</span>
                             </label>
-                            <div class="input-wrapper">
-                                <i class="fas fa-phone input-icon" aria-hidden="true"></i>
-                                <input type="tel" 
-                                       id="phone" 
-                                       name="phone" 
-                                       class="form-input" 
-                                       placeholder="Contoh: 081234567890"
-                                       required 
-                                       aria-describedby="phone-error">
+                            <div class="relative">
+                                <i class="fas fa-comment absolute left-4 top-4 text-gray-400"></i>
+                                <textarea id="message" 
+                                          x-model="form.message"
+                                          rows="4" 
+                                          class="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-primary-500 focus:outline-none transition-colors resize-none"
+                                          placeholder="Contoh: Saya ingin memesan benih cabe rawit merah 2 kg untuk lahan 1000 m²"
+                                          required></textarea>
                             </div>
-                            <div class="error-message" id="phone-error"></div>
+                            <p x-show="errors.message" x-text="errors.message" class="text-red-500 text-sm mt-1"></p>
                         </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message" class="form-label">
-                            Apa yang ingin Anda pesan? <span class="required">*</span>
-                        </label>
-                        <div class="input-wrapper">
-                            <i class="fas fa-comment input-icon" aria-hidden="true"></i>
-                            <textarea id="message" 
-                                      name="message" 
-                                      class="form-input form-textarea" 
-                                      rows="4" 
-                                      placeholder="Contoh: Saya ingin memesan benih cabe rawit merah 2 kg untuk lahan 1000 m²"
-                                      required 
-                                      aria-describedby="message-error"></textarea>
-                        </div>
-                        <div class="error-message" id="message-error"></div>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn" aria-describedby="submit-status">
-                        <span class="btn-text">Kirim ke WhatsApp</span>
-                        <span class="btn-loading">
-                            <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
-                            Mengirim...
-                        </span>
-                        <i class="fab fa-whatsapp btn-icon" aria-hidden="true"></i>
-                    </button>
-                    
-                    <div class="form-status" id="submit-status" role="status" aria-live="polite"></div>
-                </form>
+                        
+                        <button type="submit" 
+                                :disabled="loading"
+                                class="w-full bg-green-500 hover:bg-green-600 disabled:bg-gray-400 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center space-x-2">
+                            <template x-if="!loading">
+                                <div class="flex items-center space-x-2">
+                                    <i class="fab fa-whatsapp"></i>
+                                    <span>Kirim ke WhatsApp</span>
+                                </div>
+                            </template>
+                            <template x-if="loading">
+                                <div class="flex items-center space-x-2">
+                                    <i class="fas fa-spinner animate-spin"></i>
+                                    <span>Mengirim...</span>
+                                </div>
+                            </template>
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer role="contentinfo">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-main">
-                    <div class="footer-brand">
-                        <div class="footer-logo">
-                            <span class="logo-icon">🌶️</span>
-                            <span class="logo-text">MRATANI</span>
-                        </div>
-                        <p class="footer-description">
-                            Penyedia benih cabai berkualitas tinggi langsung dari petani terpercaya 
-                            di Desa Kebakalan. Kualitas terjamin, hasil panen melimpah.
-                        </p>
-                        <div class="social-links">
-                            <a href="#" class="social-link" aria-label="Follow us on Facebook">
-                                <i class="fab fa-facebook-f" aria-hidden="true"></i>
-                            </a>
-                            <a href="#" class="social-link" aria-label="Follow us on Instagram">
-                                <i class="fab fa-instagram" aria-hidden="true"></i>
-                            </a>
-                            <a href="https://wa.me/6285740007900" class="social-link" aria-label="Contact us on WhatsApp">
-                                <i class="fab fa-whatsapp" aria-hidden="true"></i>
-                            </a>
-                            <a href="mailto:info@mratani.com" class="social-link" aria-label="Send us an email">
-                                <i class="fas fa-envelope" aria-hidden="true"></i>
-                            </a>
-                        </div>
+    <footer class="bg-gray-800 text-gray-300 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- Brand -->
+                <div class="lg:col-span-2">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <span class="text-2xl">🌶️</span>
+                        <span class="font-poppins text-xl font-bold text-white">MRATANI</span>
                     </div>
+                    <p class="text-gray-400 leading-relaxed mb-6 max-w-md">
+                        Penyedia benih cabai berkualitas tinggi langsung dari petani terpercaya 
+                        di Desa Kebakalan. Kualitas terjamin, hasil panen melimpah.
+                    </p>
                 </div>
-                
-                <div class="footer-sections">
-                    <div class="footer-section">
-                        <h3 class="footer-title">Produk</h3>
-                        <ul class="footer-links">
-                            <li><a href="#products" aria-label="View Cabe Rawit Merah">Cabe Rawit Merah</a></li>
-                            <li><a href="#products" aria-label="View Cabe Hijau Ceplus">Cabe Hijau Ceplus</a></li>
-                            <li><a href="#products" aria-label="View Cabe Rawit Lokal">Cabe Rawit Lokal</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-section">
-                        <h3 class="footer-title">Informasi</h3>
-                        <ul class="footer-links">
-                            <li><a href="#about" aria-label="Learn about us">Tentang Kami</a></li>
-                            <li><a href="#village" aria-label="About our village">Desa Kebakalan</a></li>
-                            <li><a href="#tips" aria-label="View planting tips">Tips Menanam</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-section">
-                        <h3 class="footer-title">Kontak</h3>
-                        <div class="contact-info">
-                            <div class="contact-item">
-                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-                                <span>Desa Kebakalan, Kec. Baturraden</span>
-                            </div>
-                            <div class="contact-item">
-                                <i class="fas fa-phone" aria-hidden="true"></i>
-                                <a href="tel:+6285740007900">+62 857-4000-7900</a>
-                            </div>
-                            <div class="contact-item">
-                                <i class="fas fa-envelope" aria-hidden="true"></i>
-                                <a href="mailto:info@mratani.com">info@mratani.com</a>
-                            </div>
-                        </div>
-                    </div>
+
+                <!-- Products -->
+                <div>
+                    <h3 class="font-semibold text-white mb-4">Produk</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#products" class="hover:text-primary-400 transition-colors">Cabe Rawit Merah</a></li>
+                        <li><a href="#products" class="hover:text-primary-400 transition-colors">Cabe Hijau Ceplus</a></li>
+                        <li><a href="#products" class="hover:text-primary-400 transition-colors">Cabe Rawit Lokal</a></li>
+                    </ul>
                 </div>
             </div>
-            
-            <div class="footer-bottom">
-                <div class="footer-bottom-content">
-                    <p class="copyright">
+
+            <div class="border-t border-gray-700 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-500 text-sm">
                         &copy; 2024 MRATANI. Semua hak cipta dilindungi.
                     </p>
-                    <div class="footer-bottom-links">
-                        <a href="#" aria-label="Privacy Policy">Kebijakan Privasi</a>
-                        <a href="#" aria-label="Terms of Service">Syarat & Ketentuan</a>
-                    </div>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Scroll to Top Button -->
-    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
-        <i class="fas fa-arrow-up" aria-hidden="true"></i>
-    </button>
-
-    <!-- WhatsApp Float Button -->
+    <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/6285740007900" 
-       class="whatsapp-float" 
-       target="_blank" 
-       rel="noopener"
-       aria-label="Chat with us on WhatsApp">
-        <i class="fab fa-whatsapp" aria-hidden="true"></i>
-        <span class="whatsapp-text">Chat Sekarang</span>
+       target="_blank"
+       class="fixed bottom-6 left-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-40 animate-float">
+        <i class="fab fa-whatsapp text-xl"></i>
+        <span class="sr-only">Chat WhatsApp</span>
     </a>
 
+    <!-- Product Modal -->
+    <div x-show="productModal.show" 
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0"
+         class="fixed inset-0 z-50 flex items-center justify-center p-4"
+         @click.away="closeProductModal()"
+         style="display: none;">
+        
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
+        
+        <!-- Modal Content -->
+        <div class="relative bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
+             @click.stop>
+            
+            <!-- Close Button -->
+            <button @click="closeProductModal()" 
+                    class="absolute top-4 right-4 z-10 w-10 h-10 bg-white/90 hover:bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-gray-800 transition-colors shadow-lg">
+                <i class="fas fa-times text-lg"></i>
+            </button>
+            
+            <!-- Product Image -->
+            <div class="relative h-80 overflow-hidden rounded-t-2xl">
+                <img :src="productModal.image" 
+                     :alt="productModal.name"
+                     class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+            </div>
+            
+            <!-- Product Info -->
+            <div class="p-8">
+                <h2 class="font-poppins text-3xl font-bold text-gray-800 mb-4" x-text="productModal.name"></h2>
+                <p class="text-gray-600 text-lg leading-relaxed mb-8" x-text="productModal.description"></p>
+                
+                <!-- Features -->
+                <div class="grid sm:grid-cols-2 gap-4 mb-8">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-seedling text-green-600"></i>
+                        </div>
+                        <span class="text-gray-700 font-medium">Kualitas Premium</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-shield-alt text-blue-600"></i>
+                        </div>
+                        <span class="text-gray-700 font-medium">Tahan Penyakit</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-chart-line text-yellow-600"></i>
+                        </div>
+                        <span class="text-gray-700 font-medium">Hasil Melimpah</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-leaf text-purple-600"></i>
+                        </div>
+                        <span class="text-gray-700 font-medium">100% Organik</span>
+                    </div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a :href="'https://wa.me/6285740007900?text=Halo%20Pak%20Sarwan,%20saya%20tertarik%20dengan%20' + encodeURIComponent(productModal.name)" 
+                       target="_blank"
+                       class="flex-1 inline-flex items-center justify-center space-x-2 bg-green-500 hover:bg-green-600 text-white px-6 py-4 rounded-xl font-semibold transition-all duration-300">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                        <span>Pesan via WhatsApp</span>
+                    </a>
+                    <button @click="closeProductModal()"
+                            class="sm:w-auto px-6 py-4 border-2 border-gray-300 text-gray-700 rounded-xl font-semibold hover:bg-gray-50 transition-colors">
+                        Tutup
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
     <script src="script.js"></script>
+    
+    <script>
+        // Tailwind CSS Configuration
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        inter: ["Inter", "sans-serif"],
+                        poppins: ["Poppins", "sans-serif"],
+                    },
+                    colors: {
+                        primary: {
+                            50: "#f0fdf4",
+                            100: "#dcfce7",
+                            200: "#bbf7d0",
+                            300: "#86efac",
+                            400: "#4ade80",
+                            500: "#22c55e",
+                            600: "#16a34a",
+                            700: "#15803d",
+                            800: "#166534",
+                            900: "#14532d",
+                        },
+                    },
+                    animation: {
+                        float: "float 3s ease-in-out infinite",
+                        "pulse-slow": "pulse 3s ease-in-out infinite",
+                        "bounce-slow": "bounce 2s infinite",
+                    },
+                    keyframes: {
+                        float: {
+                            "0%, 100%": { transform: "translateY(0px)" },
+                            "50%": { transform: "translateY(-10px)" },
+                        },
+                    },
+                },
+            },
+        };
+
+        // Alpine.js Main App Data
+        function appData() {
+            return {
+                mobileMenuOpen: false,
+                scrolled: false,
+                loading: true,
+                productModal: {
+                    show: false,
+                    name: "",
+                    image: "",
+                    description: "",
+                },
+
+                init() {
+                    // Initialize AOS
+                    if (typeof AOS !== 'undefined') {
+                        AOS.init({
+                            duration: 800,
+                            easing: "ease-in-out",
+                            once: true,
+                            offset: 100,
+                        });
+                    }
+
+                    // Handle scroll events
+                    this.handleScroll();
+
+                    // Hide loading screen
+                    setTimeout(() => {
+                        this.loading = false;
+                    }, 1500);
+
+                    // Initialize smooth scrolling
+                    this.initSmoothScrolling();
+                },
+
+                openProductModal(name, image, description) {
+                    this.productModal = {
+                        show: true,
+                        name: name,
+                        image: image,
+                        description: description,
+                    };
+                    document.body.style.overflow = "hidden";
+                },
+
+                closeProductModal() {
+                    this.productModal.show = false;
+                    document.body.style.overflow = "";
+                },
+
+                handleScroll() {
+                    window.addEventListener(
+                        "scroll",
+                        () => {
+                            this.scrolled = window.scrollY > 50;
+                        },
+                        { passive: true }
+                    );
+                },
+
+                initSmoothScrolling() {
+                    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+                        anchor.addEventListener("click", function (e) {
+                            e.preventDefault();
+                            const target = document.querySelector(this.getAttribute("href"));
+                            if (target) {
+                                const headerHeight = 80;
+                                const targetPosition = target.offsetTop - headerHeight;
+                                window.scrollTo({
+                                    top: targetPosition,
+                                    behavior: "smooth",
+                                });
+                            }
+                        });
+                    });
+                },
+            };
+        }
+
+        // Alpine.js Contact Form Component
+        function contactForm() {
+            return {
+                form: {
+                    name: "",
+                    phone: "",
+                    message: "",
+                },
+                loading: false,
+                errors: {},
+
+                async submitForm() {
+                    console.log("Form submitted!", this.form);
+
+                    // Reset errors
+                    this.errors = {};
+
+                    // Validate form
+                    if (!this.validateForm()) {
+                        console.log("Validation failed", this.errors);
+                        return;
+                    }
+
+                    this.loading = true;
+
+                    try {
+                        // Simulate loading delay
+                        await new Promise((resolve) => setTimeout(resolve, 1000));
+
+                        // Create WhatsApp message
+                        const message = encodeURIComponent(
+                            `Halo Pak Sarwan, saya ${this.form.name} dan saya ingin ${this.form.message}.\n\nNomor telepon saya: ${this.form.phone}\n\nTerima kasih!`
+                        );
+                        const whatsappUrl = `https://wa.me/6285740007900?text=${message}`;
+
+                        console.log("Opening WhatsApp:", whatsappUrl);
+
+                        // Open WhatsApp
+                        window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+
+                        // Reset form
+                        this.form = { name: "", phone: "", message: "" };
+
+                        // Show success notification
+                        this.showNotification(
+                            "Terima kasih! Anda akan diarahkan ke WhatsApp untuk menghubungi Pak Sarwan.",
+                            "success"
+                        );
+                    } catch (error) {
+                        console.error("Form submission error:", error);
+                        this.showNotification("Terjadi kesalahan. Silakan coba lagi.", "error");
+                    } finally {
+                        this.loading = false;
+                    }
+                },
+
+                validateForm() {
+                    let isValid = true;
+
+                    // Validate name
+                    if (!this.form.name.trim()) {
+                        this.errors.name = "Nama lengkap wajib diisi";
+                        isValid = false;
+                    } else if (this.form.name.trim().length < 2) {
+                        this.errors.name = "Nama minimal 2 karakter";
+                        isValid = false;
+                    } else {
+                        delete this.errors.name;
+                    }
+
+                    // Validate phone
+                    if (!this.form.phone.trim()) {
+                        this.errors.phone = "Nomor telepon wajib diisi";
+                        isValid = false;
+                    } else if (!this.isValidPhone(this.form.phone)) {
+                        this.errors.phone = "Format nomor telepon tidak valid";
+                        isValid = false;
+                    } else {
+                        delete this.errors.phone;
+                    }
+
+                    // Validate message
+                    if (!this.form.message.trim()) {
+                        this.errors.message = "Pesan wajib diisi";
+                        isValid = false;
+                    } else if (this.form.message.trim().length < 10) {
+                        this.errors.message = "Pesan minimal 10 karakter";
+                        isValid = false;
+                    } else {
+                        delete this.errors.message;
+                    }
+
+                    return isValid;
+                },
+
+                isValidPhone(phone) {
+                    const phoneRegex = /^(\+62|62|0)[0-9]{9,13}$/;
+                    return phoneRegex.test(phone.replace(/[\s-]/g, ""));
+                },
+
+                showNotification(message, type = "info") {
+                    const notification = document.createElement("div");
+                    notification.className = `fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg max-w-sm transform transition-all duration-300 translate-x-full`;
+
+                    // Set colors based on type
+                    const colors = {
+                        success: "bg-green-500 text-white",
+                        error: "bg-red-500 text-white",
+                        info: "bg-blue-500 text-white",
+                        warning: "bg-yellow-500 text-black",
+                    };
+
+                    notification.className += ` ${colors[type] || colors.info}`;
+                    notification.innerHTML = `
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-${
+                                type === "success"
+                                    ? "check-circle"
+                                    : type === "error"
+                                    ? "exclamation-circle"
+                                    : "info-circle"
+                            }"></i>
+                            <span>${message}</span>
+                            <button onclick="this.parentElement.parentElement.remove()" class="ml-2 text-white hover:text-gray-200">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    `;
+
+                    document.body.appendChild(notification);
+
+                    // Animate in
+                    setTimeout(() => {
+                        notification.classList.remove("translate-x-full");
+                    }, 100);
+
+                    // Auto remove after 5 seconds
+                    setTimeout(() => {
+                        notification.classList.add("translate-x-full");
+                        setTimeout(() => {
+                            if (notification.parentElement) {
+                                notification.remove();
+                            }
+                        }, 300);
+                    }, 5000);
+                },
+            };
+        }
+    </script>
 </body>
 </html>

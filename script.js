@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initSmoothScrolling()
   initScrollAnimations()
   initHeaderEffects()
-  initScrollToTop()
   initContactForm()
   initMobileMenu()
   initLoadingAnimation()
@@ -93,26 +92,6 @@ function initHeaderEffects() {
   })
 }
 
-// Scroll to top functionality
-function initScrollToTop() {
-  const scrollTopBtn = document.getElementById("scrollTop")
-
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 300) {
-      scrollTopBtn.classList.add("visible")
-    } else {
-      scrollTopBtn.classList.remove("visible")
-    }
-  })
-
-  scrollTopBtn.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    })
-  })
-}
-
 // Contact form submission with correct WhatsApp number
 function initContactForm() {
   const contactForm = document.getElementById("contactForm")
@@ -163,16 +142,22 @@ function initContactForm() {
   })
 }
 
-// Mobile menu toggle
+// Mobile menu toggle - Improved version
 function initMobileMenu() {
   const mobileMenuBtn = document.querySelector(".mobile-menu")
   const navLinks = document.querySelector(".nav-links")
   const navLinksItems = document.querySelectorAll(".nav-links a")
 
+  console.log("Mobile menu elements:", { mobileMenuBtn, navLinks, navLinksItems })
+
   if (mobileMenuBtn && navLinks) {
+    // Toggle menu on button click
     mobileMenuBtn.addEventListener("click", (e) => {
+      e.preventDefault()
       e.stopPropagation()
+
       const isActive = navLinks.classList.contains("active")
+      console.log("Menu toggle clicked, currently active:", isActive)
 
       if (isActive) {
         closeMobileMenu()
@@ -183,7 +168,8 @@ function initMobileMenu() {
 
     // Close menu when clicking nav links
     navLinksItems.forEach((link) => {
-      link.addEventListener("click", () => {
+      link.addEventListener("click", (e) => {
+        console.log("Nav link clicked")
         closeMobileMenu()
       })
     })
@@ -191,6 +177,7 @@ function initMobileMenu() {
     // Close menu when clicking outside
     document.addEventListener("click", (e) => {
       if (!e.target.closest("nav") && navLinks.classList.contains("active")) {
+        console.log("Clicked outside, closing menu")
         closeMobileMenu()
       }
     })
@@ -198,12 +185,23 @@ function initMobileMenu() {
     // Close menu on escape key
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && navLinks.classList.contains("active")) {
+        console.log("Escape pressed, closing menu")
         closeMobileMenu()
       }
     })
+
+    // Handle window resize
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 768 && navLinks.classList.contains("active")) {
+        closeMobileMenu()
+      }
+    })
+  } else {
+    console.error("Mobile menu elements not found!")
   }
 
   function openMobileMenu() {
+    console.log("Opening mobile menu")
     navLinks.classList.add("active")
     mobileMenuBtn.classList.add("active")
     mobileMenuBtn.setAttribute("aria-expanded", "true")
@@ -211,13 +209,14 @@ function initMobileMenu() {
   }
 
   function closeMobileMenu() {
+    console.log("Closing mobile menu")
     navLinks.classList.remove("active")
     mobileMenuBtn.classList.remove("active")
     mobileMenuBtn.setAttribute("aria-expanded", "false")
     document.body.style.overflow = ""
   }
 
-  // Make functions globally accessible
+  // Make functions globally accessible for debugging
   window.openMobileMenu = openMobileMenu
   window.closeMobileMenu = closeMobileMenu
 }
@@ -607,7 +606,6 @@ class MRATANIWebsite {
     this.initSmoothScrolling()
     this.initScrollAnimations()
     this.initHeaderEffects()
-    this.initScrollToTop()
     this.initContactForm()
     this.initMobileMenu()
     this.initProductInteractions()
@@ -646,7 +644,6 @@ class MRATANIWebsite {
 
   updateScrollEffects() {
     this.updateHeader()
-    this.updateScrollToTop()
     this.updateParallax()
   }
 
@@ -733,30 +730,7 @@ class MRATANIWebsite {
 
     this.lastScrollTop = this.scrollPosition
   }
-
-  initScrollToTop() {
-    this.scrollTopBtn = document.getElementById("scrollTop")
-
-    if (this.scrollTopBtn) {
-      this.scrollTopBtn.addEventListener("click", () => {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        })
-      })
-    }
-  }
-
-  updateScrollToTop() {
-    if (!this.scrollTopBtn) return
-
-    if (this.scrollPosition > 300) {
-      this.scrollTopBtn.classList.add("visible")
-    } else {
-      this.scrollTopBtn.classList.remove("visible")
-    }
-  }
-
+  
   initContactForm() {
     const contactForm = document.getElementById("contactForm")
 
@@ -894,6 +868,7 @@ class MRATANIWebsite {
 
     if (mobileMenuBtn && navLinks) {
       mobileMenuBtn.addEventListener("click", (e) => {
+        e.preventDefault()
         e.stopPropagation()
         const isActive = navLinks.classList.contains("active")
 
@@ -934,8 +909,6 @@ class MRATANIWebsite {
     navLinks.classList.add("active")
     mobileMenuBtn.classList.add("active")
     mobileMenuBtn.setAttribute("aria-expanded", "true")
-
-    // Prevent body scroll
     document.body.style.overflow = "hidden"
   }
 
@@ -946,8 +919,6 @@ class MRATANIWebsite {
     navLinks.classList.remove("active")
     mobileMenuBtn.classList.remove("active")
     mobileMenuBtn.setAttribute("aria-expanded", "false")
-
-    // Restore body scroll
     document.body.style.overflow = ""
   }
 
@@ -1388,3 +1359,617 @@ document.addEventListener("click", (e) => {
 
 console.log("🌶️ MRATANI Website Loaded Successfully! 🌶️")
 console.log("Modern, SEO-optimized, and user-friendly experience ready!")
+
+// Tailwind CSS Configuration
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: {
+        inter: ["Inter", "sans-serif"],
+        poppins: ["Poppins", "sans-serif"],
+      },
+      colors: {
+        primary: {
+          50: "#f0fdf4",
+          100: "#dcfce7",
+          200: "#bbf7d0",
+          300: "#86efac",
+          400: "#4ade80",
+          500: "#22c55e",
+          600: "#16a34a",
+          700: "#15803d",
+          800: "#166534",
+          900: "#14532d",
+        },
+      },
+      animation: {
+        float: "float 3s ease-in-out infinite",
+        "pulse-slow": "pulse 3s ease-in-out infinite",
+        "bounce-slow": "bounce 2s infinite",
+      },
+      keyframes: {
+        float: {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+      },
+    },
+  },
+}
+
+// Alpine.js Main App Data
+function appData() {
+  return {
+    mobileMenuOpen: false,
+    scrolled: false,
+    loading: true,
+
+    init() {
+      // Initialize AOS
+      AOS.init({
+        duration: 800,
+        easing: "ease-in-out",
+        once: true,
+        offset: 100,
+      })
+
+      // Handle scroll events
+      this.handleScroll()
+
+      // Hide loading screen
+      setTimeout(() => {
+        this.loading = false
+      }, 1500)
+
+      // Initialize smooth scrolling
+      this.initSmoothScrolling()
+
+      // Initialize other features
+      this.initPerformanceOptimizations()
+    },
+
+    handleScroll() {
+      window.addEventListener(
+        "scroll",
+        () => {
+          this.scrolled = window.scrollY > 50
+        },
+        { passive: true },
+      )
+    },
+
+    initSmoothScrolling() {
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault()
+          const target = document.querySelector(this.getAttribute("href"))
+          if (target) {
+            const headerHeight = 80
+            const targetPosition = target.offsetTop - headerHeight
+            window.scrollTo({
+              top: targetPosition,
+              behavior: "smooth",
+            })
+          }
+        })
+      })
+    },
+
+    initPerformanceOptimizations() {
+      // Lazy load images
+      if ("IntersectionObserver" in window) {
+        const imageObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const img = entry.target
+              if (img.dataset.src) {
+                img.src = img.dataset.src
+                img.classList.remove("lazy")
+                imageObserver.unobserve(img)
+              }
+            }
+          })
+        })
+
+        document.querySelectorAll("img[data-src]").forEach((img) => {
+          imageObserver.observe(img)
+        })
+      }
+
+      // Preload critical resources
+      this.preloadCriticalResources()
+    },
+
+    preloadCriticalResources() {
+      const criticalImages = ["assets/bg.jpeg", "assets/sarwan.jpg"]
+
+      criticalImages.forEach((src) => {
+        const link = document.createElement("link")
+        link.rel = "preload"
+        link.as = "image"
+        link.href = src
+        document.head.appendChild(link)
+      })
+    },
+  }
+}
+
+// Alpine.js Contact Form Component
+function contactForm() {
+  return {
+    form: {
+      name: "",
+      phone: "",
+      message: "",
+    },
+    loading: false,
+    errors: {},
+
+    async submitForm() {
+      // Reset errors
+      this.errors = {}
+
+      // Validate form
+      if (!this.validateForm()) {
+        return
+      }
+
+      this.loading = true
+
+      try {
+        // Simulate loading delay
+        await new Promise((resolve) => setTimeout(resolve, 1000))
+
+        // Create WhatsApp message
+        const message = encodeURIComponent(
+          `Halo Pak Sarwan, saya ${this.form.name} dan saya ingin ${this.form.message}.\n\nNomor telepon saya: ${this.form.phone}\n\nTerima kasih!`,
+        )
+        const whatsappUrl = `https://wa.me/6285740007900?text=${message}`
+
+        // Open WhatsApp
+        window.open(whatsappUrl, "_blank", "noopener,noreferrer")
+
+        // Reset form
+        this.form = { name: "", phone: "", message: "" }
+
+        // Show success notification
+        this.showNotification("Terima kasih! Anda akan diarahkan ke WhatsApp untuk menghubungi Pak Sarwan.", "success")
+
+        // Track event
+        this.trackEvent("form_submit", {
+          form_type: "contact",
+          success: true,
+        })
+      } catch (error) {
+        console.error("Form submission error:", error)
+        this.showNotification("Terjadi kesalahan. Silakan coba lagi.", "error")
+
+        this.trackEvent("form_submit", {
+          form_type: "contact",
+          success: false,
+          error: error.message,
+        })
+      } finally {
+        this.loading = false
+      }
+    },
+
+    validateForm() {
+      let isValid = true
+
+      // Validate name
+      if (!this.form.name.trim()) {
+        this.errors.name = "Nama lengkap wajib diisi"
+        isValid = false
+      } else if (this.form.name.trim().length < 2) {
+        this.errors.name = "Nama minimal 2 karakter"
+        isValid = false
+      }
+
+      // Validate phone
+      if (!this.form.phone.trim()) {
+        this.errors.phone = "Nomor telepon wajib diisi"
+        isValid = false
+      } else if (!this.isValidPhone(this.form.phone)) {
+        this.errors.phone = "Format nomor telepon tidak valid"
+        isValid = false
+      }
+
+      // Validate message
+      if (!this.form.message.trim()) {
+        this.errors.message = "Pesan wajib diisi"
+        isValid = false
+      } else if (this.form.message.trim().length < 10) {
+        this.errors.message = "Pesan minimal 10 karakter"
+        isValid = false
+      }
+
+      return isValid
+    },
+
+    isValidPhone(phone) {
+      const phoneRegex = /^(\+62|62|0)[0-9]{9,13}$/
+      return phoneRegex.test(phone.replace(/[\s-]/g, ""))
+    },
+
+    showNotification(message, type = "info") {
+      const notification = document.createElement("div")
+      notification.className = `fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg max-w-sm transform transition-all duration-300 translate-x-full`
+
+      // Set colors based on type
+      const colors = {
+        success: "bg-green-500 text-white",
+        error: "bg-red-500 text-white",
+        info: "bg-blue-500 text-white",
+        warning: "bg-yellow-500 text-black",
+      }
+
+      notification.className += ` ${colors[type] || colors.info}`
+      notification.innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-${type === "success" ? "check-circle" : type === "error" ? "exclamation-circle" : "info-circle"}"></i>
+                    <span>${message}</span>
+                    <button onclick="this.parentElement.parentElement.remove()" class="ml-2 text-white hover:text-gray-200">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `
+
+      document.body.appendChild(notification)
+
+      // Animate in
+      setTimeout(() => {
+        notification.classList.remove("translate-x-full")
+      }, 100)
+
+      // Auto remove after 5 seconds
+      setTimeout(() => {
+        notification.classList.add("translate-x-full")
+        setTimeout(() => {
+          if (notification.parentElement) {
+            notification.remove()
+          }
+        }, 300)
+      }, 5000)
+    },
+
+    trackEvent(eventName, eventData = {}) {
+      // Google Analytics 4 tracking
+      if (typeof gtag !== "undefined") {
+        gtag("event", eventName, eventData)
+      }
+
+      // Console log for development
+      console.log("Event tracked:", eventName, eventData)
+    },
+  }
+}
+
+// Utility Functions
+const MRATANIUtils = {
+  // Debounce function
+  debounce(func, wait) {
+    let timeout
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout)
+        func(...args)
+      }
+      clearTimeout(timeout)
+      timeout = setTimeout(later, wait)
+    }
+  },
+
+  // Throttle function
+  throttle(func, limit) {
+    let inThrottle
+    return function () {
+      const args = arguments
+      
+      if (!inThrottle) {
+        func.apply(this, args)
+        inThrottle = true
+        setTimeout(() => (inThrottle = false), limit)
+      }
+    }
+  },
+
+  // Format phone number
+  formatPhone(phone) {
+    const cleaned = phone.replace(/\D/g, "")
+    if (cleaned.startsWith("0")) {
+      return "+62" + cleaned.substring(1)
+    } else if (cleaned.startsWith("62")) {
+      return "+" + cleaned
+    } else {
+      return "+62" + cleaned
+    }
+  },
+
+  // Check if element is in viewport
+  isInViewport(element) {
+    const rect = element.getBoundingClientRect()
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    )
+  },
+
+  // Smooth scroll to element
+  scrollToElement(element, offset = 80) {
+    const targetPosition = element.offsetTop - offset
+    window.scrollTo({
+      top: targetPosition,
+      behavior: "smooth",
+    })
+  },
+}
+
+// Performance Monitoring
+const PerformanceMonitor = {
+  init() {
+    if ("performance" in window) {
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          this.measurePerformance()
+        }, 0)
+      })
+    }
+  },
+
+  measurePerformance() {
+    const perfData = performance.getEntriesByType("navigation")[0]
+    const paintEntries = performance.getEntriesByType("paint")
+
+    const metrics = {
+      pageLoadTime: Math.round(perfData.loadEventEnd - perfData.fetchStart),
+      domContentLoaded: Math.round(perfData.domContentLoadedEventEnd - perfData.fetchStart),
+      firstPaint: paintEntries.find((entry) => entry.name === "first-paint")?.startTime || 0,
+      firstContentfulPaint: paintEntries.find((entry) => entry.name === "first-contentful-paint")?.startTime || 0,
+    }
+
+    console.log("🌶️ MRATANI Performance Metrics:", metrics)
+
+    // Send to analytics if available
+    if (typeof gtag !== "undefined") {
+      gtag("event", "page_performance", {
+        page_load_time: metrics.pageLoadTime,
+        dom_content_loaded: metrics.domContentLoaded,
+        first_paint: Math.round(metrics.firstPaint),
+        first_contentful_paint: Math.round(metrics.firstContentfulPaint),
+      })
+    }
+  },
+}
+
+// SEO and Analytics
+const SEOAnalytics = {
+  init() {
+    this.trackPageView()
+    this.setupEventTracking()
+    this.monitorUserEngagement()
+  },
+
+  trackPageView() {
+    if (typeof gtag !== "undefined") {
+      gtag("config", "GA_MEASUREMENT_ID", {
+        page_title: document.title,
+        page_location: window.location.href,
+      })
+    }
+  },
+
+  setupEventTracking() {
+    // Track WhatsApp clicks
+    document.addEventListener("click", (e) => {
+      if (e.target.closest('a[href*="wa.me"]')) {
+        const productName = e.target.closest(".product-card")?.querySelector(".product-title")?.textContent || "general"
+        this.trackEvent("whatsapp_click", {
+          product: productName,
+          location: e.target.closest("section")?.id || "unknown",
+        })
+      }
+
+      // Track CTA clicks
+      if (e.target.closest(".btn-primary, .cta-primary, .cta-secondary")) {
+        const buttonText = e.target.textContent.trim()
+        this.trackEvent("cta_click", {
+          button_text: buttonText,
+          location: e.target.closest("section")?.id || "unknown",
+        })
+      }
+
+      // Track navigation clicks
+      if (e.target.closest(".nav-link")) {
+        const linkText = e.target.textContent.trim()
+        this.trackEvent("navigation_click", {
+          link_text: linkText,
+          destination: e.target.getAttribute("href"),
+        })
+      }
+    })
+  },
+
+  monitorUserEngagement() {
+    const startTime = Date.now()
+    let maxScroll = 0
+
+    // Track scroll depth
+    window.addEventListener(
+      "scroll",
+      MRATANIUtils.throttle(() => {
+        const scrollPercent = Math.round(
+          (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100,
+        )
+        maxScroll = Math.max(maxScroll, scrollPercent)
+      }, 1000),
+    )
+
+    // Track time on page
+    window.addEventListener("beforeunload", () => {
+      const timeOnPage = Math.round((Date.now() - startTime) / 1000)
+      this.trackEvent("user_engagement", {
+        time_on_page: timeOnPage,
+        max_scroll_depth: maxScroll,
+      })
+    })
+  },
+
+  trackEvent(eventName, eventData = {}) {
+    if (typeof gtag !== "undefined") {
+      gtag("event", eventName, eventData)
+    }
+    console.log("📊 Event tracked:", eventName, eventData)
+  },
+}
+
+// Accessibility Enhancements
+const AccessibilityEnhancer = {
+  init() {
+    this.addSkipLink()
+    this.enhanceFocusManagement()
+    this.addKeyboardNavigation()
+    this.improveScreenReaderSupport()
+  },
+
+  addSkipLink() {
+    const skipLink = document.createElement("a")
+    skipLink.href = "#main-content"
+    skipLink.className = "skip-link"
+    skipLink.textContent = "Skip to main content"
+    document.body.insertBefore(skipLink, document.body.firstChild)
+
+    // Add main content landmark
+    const mainContent = document.querySelector("#about")
+    if (mainContent) {
+      mainContent.id = "main-content"
+      mainContent.setAttribute("role", "main")
+    }
+  },
+
+  enhanceFocusManagement() {
+    // Trap focus in mobile menu
+    document.addEventListener("keydown", (e) => {
+      const mobileMenu = document.querySelector(".nav-links.active")
+      if (mobileMenu && e.key === "Tab") {
+        const focusableElements = mobileMenu.querySelectorAll("a")
+        const firstElement = focusableElements[0]
+        const lastElement = focusableElements[focusableElements.length - 1]
+
+        if (e.shiftKey && document.activeElement === firstElement) {
+          e.preventDefault()
+          lastElement.focus()
+        } else if (!e.shiftKey && document.activeElement === lastElement) {
+          e.preventDefault()
+          firstElement.focus()
+        }
+      }
+    })
+  },
+
+  addKeyboardNavigation() {
+    document.addEventListener("keydown", (e) => {
+      // Global keyboard shortcuts
+      if (e.ctrlKey || e.metaKey) {
+        switch (e.key) {
+          case "k":
+            e.preventDefault()
+            this.focusSearchOrContact()
+            break
+        }
+      }
+
+      // Escape key handling
+      if (e.key === "Escape") {
+        // Close mobile menu
+        const mobileMenuButton = document.querySelector("[x-data] button")
+        if (mobileMenuButton) {
+          Alpine.store("app").mobileMenuOpen = false
+        }
+      }
+    })
+  },
+
+  improveScreenReaderSupport() {
+    // Add live region for dynamic content
+    const liveRegion = document.createElement("div")
+    liveRegion.setAttribute("aria-live", "polite")
+    liveRegion.setAttribute("aria-atomic", "true")
+    liveRegion.className = "sr-only"
+    liveRegion.id = "live-region"
+    document.body.appendChild(liveRegion)
+
+    // Announce page changes
+    this.announcePageChanges()
+  },
+
+  focusSearchOrContact() {
+    const contactForm = document.querySelector("#name")
+    if (contactForm) {
+      contactForm.focus()
+      MRATANIUtils.scrollToElement(contactForm.closest("section"))
+    }
+  },
+
+  announcePageChanges() {
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === "childList" && mutation.addedNodes.length > 0) {
+          const liveRegion = document.getElementById("live-region")
+          if (liveRegion) {
+            // Announce significant changes
+            const newContent = Array.from(mutation.addedNodes)
+              .filter((node) => node.nodeType === Node.ELEMENT_NODE)
+              .find((node) => node.matches(".notification, .alert, .success-message"))
+
+            if (newContent) {
+              liveRegion.textContent = newContent.textContent
+            }
+          }
+        }
+      })
+    })
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    })
+  },
+}
+
+// Initialize everything when DOM is ready
+document.addEventListener("DOMContentLoaded", () => {
+  // Initialize performance monitoring
+  PerformanceMonitor.init()
+
+  // Initialize SEO and analytics
+  SEOAnalytics.init()
+
+  // Initialize accessibility enhancements
+  AccessibilityEnhancer.init()
+
+  console.log("🌶️ MRATANI Website Loaded Successfully!")
+  console.log("✨ Modern, accessible, and optimized experience ready!")
+})
+
+// Service Worker Registration (Progressive Web App)
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("/sw.js")
+      .then((registration) => {
+        console.log("SW registered: ", registration)
+      })
+      .catch((registrationError) => {
+        console.log("SW registration failed: ", registrationError)
+      })
+  })
+}
+
+// Export utilities for global use
+window.MRATANIUtils = MRATANIUtils
+window.PerformanceMonitor = PerformanceMonitor
+window.SEOAnalytics = SEOAnalytics
+window.AccessibilityEnhancer = AccessibilityEnhancer
