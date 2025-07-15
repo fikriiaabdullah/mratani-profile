@@ -1481,7 +1481,7 @@ function appData() {
     },
 
     preloadCriticalResources() {
-      const criticalImages = ["assets/bg.jpeg", "assets/sarwan.jpg"]
+      const criticalImages = ["assets/bg.jpg", "assets/sarwan.jpg"]
 
       criticalImages.forEach((src) => {
         const link = document.createElement("link")

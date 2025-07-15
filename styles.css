@@ -450,7 +450,7 @@ header.scrolled .hamburger-line {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url("assets/bg.jpeg") center / cover no-repeat;
+  background: url("assets/bg.jpg") center / cover no-repeat;
   z-index: -2;
 }
 
@@ -2063,7 +2063,7 @@ textarea:focus {
 /* Custom Background Classes */
 .hero-bg {
   background-image: linear-gradient(135deg, rgba(34, 197, 94, 0.8) 0%, rgba(22, 163, 74, 0.9) 100%),
-    url("assets/bg.jpeg");
+    url("assets/bg.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
